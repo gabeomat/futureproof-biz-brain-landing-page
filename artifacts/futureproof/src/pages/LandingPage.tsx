@@ -74,19 +74,19 @@ export default function LandingPage() {
               THE PROBLEM ISN'T ACCESS TO AI. <br /> IT'S THAT YOU DON'T HAVE A SYSTEM.
             </h2>
             <div className="text-sm font-bold leading-relaxed mb-8 space-y-4">
-              <p className="text-white p-4 uppercase" style={{ backgroundColor: "#345c72" }}>
+              <p className="text-white p-6 uppercase text-base leading-loose" style={{ backgroundColor: "#345c72" }}>
                 A system that: <br />
-                <span className="flex items-center gap-2 mt-2">
-                  <CheckSquare className="w-4 h-4 flex-shrink-0" style={{ color: "#f46530" }} /> Knows your business
+                <span className="flex items-center gap-3 mt-3">
+                  <CheckSquare className="w-5 h-5 flex-shrink-0" style={{ color: "#f46530" }} /> Knows your business
                 </span>
-                <span className="flex items-center gap-2">
-                  <CheckSquare className="w-4 h-4 flex-shrink-0" style={{ color: "#f46530" }} /> Remembers what matters
+                <span className="flex items-center gap-3">
+                  <CheckSquare className="w-5 h-5 flex-shrink-0" style={{ color: "#f46530" }} /> Remembers what matters
                 </span>
-                <span className="flex items-center gap-2">
-                  <CheckSquare className="w-4 h-4 flex-shrink-0" style={{ color: "#f46530" }} /> Evolves as you evolve
+                <span className="flex items-center gap-3">
+                  <CheckSquare className="w-5 h-5 flex-shrink-0" style={{ color: "#f46530" }} /> Evolves as you evolve
                 </span>
-                <span className="flex items-center gap-2">
-                  <CheckSquare className="w-4 h-4 flex-shrink-0" style={{ color: "#f46530" }} /> And actually does work for you
+                <span className="flex items-center gap-3">
+                  <CheckSquare className="w-5 h-5 flex-shrink-0" style={{ color: "#f46530" }} /> And actually does work for you
                 </span>
               </p>
               <p className="text-lg uppercase">
