@@ -3,7 +3,6 @@ import { Zap, CheckSquare, Brain, Layers, Database, Workflow, Play } from "lucid
 export default function LandingPage() {
   return (
     <div className="manifesto-root min-h-screen p-4 md:p-8">
-
       {/* Top Header */}
       <header className="border-hard border-b-[8px] flex justify-between items-center p-4 bg-white mb-8">
         <div className="flex items-center gap-2">
@@ -17,7 +16,6 @@ export default function LandingPage() {
           Join The Lab
         </a>
       </header>
-
       <main className="max-w-7xl mx-auto space-y-8">
 
         {/* Hero + Problem Side-by-Side */}
@@ -55,7 +53,7 @@ export default function LandingPage() {
             </h2>
             <div className="space-y-4 text-sm font-bold leading-tight">
               <p>You're using AI… but it doesn't feel like leverage.</p>
-              <p>It feels like more tabs. More prompts. More starting over.</p>
+              <p>It feels more like going down rabbit holes that waste your time.</p>
               <p>You've got 87 chat threads open. Every new one = re-explaining your business. Your audience. Your offers. Your voice.</p>
               <p className="uppercase text-base" style={{ color: "#f46530" }}>So nothing compounds. Nothing sticks.</p>
               <p>Maybe you upgraded to Custom GPTs. Better… but still broken. Because they're static.</p>
@@ -256,7 +254,6 @@ export default function LandingPage() {
         </footer>
 
       </main>
-
       <style>{`
         .manifesto-root {
           font-family: 'Space Mono', monospace;
