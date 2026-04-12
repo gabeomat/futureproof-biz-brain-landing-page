@@ -34,7 +34,7 @@ export default function LandingPage() {
               You don't need more AI tools. You need one system that runs your business.
             </p>
             <p className="text-base md:text-lg mb-8 max-w-2xl leading-snug">
-              Build an AI Business Brain, hire a Dream Team, and do 5 jobs by yourself. No complex tech background. Just a smart way to work.
+              Build an AI <strong>Business Brain</strong>, hire a <strong>Dream Team</strong>, and do 5 jobs by yourself. No complex tech background. Just a smart way to work.
             </p>
             <div id="join" className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a
