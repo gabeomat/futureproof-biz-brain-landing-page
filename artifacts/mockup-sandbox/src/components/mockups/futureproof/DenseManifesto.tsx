@@ -1,0 +1,215 @@
+import React, { useEffect } from "react";
+import { Zap, CheckSquare, Brain, Layers, Database, Workflow, Play } from "lucide-react";
+
+export default function DenseManifesto() {
+  useEffect(() => {
+    // Remove dark class for this specific manifesto page
+    document.documentElement.classList.remove("dark");
+    return () => document.documentElement.classList.add("dark");
+  }, []);
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        .manifesto-root {
+          font-family: 'Space Mono', monospace;
+          background-color: #f4f4f0;
+          color: #111;
+        }
+        
+        .font-anton {
+          font-family: 'Anton', sans-serif;
+          text-transform: uppercase;
+        }
+
+        .border-hard {
+          border: 2px solid #111;
+        }
+
+        .bg-accent-red {
+          background-color: #ff2a00;
+        }
+        
+        .text-accent-red {
+          color: #ff2a00;
+        }
+      `}} />
+      <div className="manifesto-root min-h-screen selection:bg-black selection:text-white p-4 md:p-8">
+        
+        {/* Top Header */}
+        <header className="border-hard border-b-8 flex justify-between items-center p-4 bg-white mb-8">
+          <div className="flex items-center gap-2">
+            <Zap className="w-8 h-8 text-black fill-black" />
+            <span className="font-anton text-3xl tracking-wide mt-1">FUTUREPROOF</span>
+          </div>
+          <div className="font-bold text-sm md:text-base border-hard px-4 py-2 bg-accent-red text-white uppercase tracking-tight">
+            Join The Lab
+          </div>
+        </header>
+
+        <main className="max-w-7xl mx-auto space-y-8">
+          
+          {/* Hero Section */}
+          <section className="border-hard bg-white flex flex-col md:flex-row">
+            <div className="p-6 md:p-12 md:w-2/3 border-b-2 md:border-b-0 md:border-r-2 border-[#111]">
+              <div className="inline-block border-hard px-3 py-1 bg-black text-white text-xs font-bold uppercase mb-6">
+                Futureproof Vol. 1
+              </div>
+              <h1 className="font-anton text-6xl md:text-8xl leading-[0.85] mb-6">
+                THE EVOLUTION <br /> <span className="text-accent-red">LAB.</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-bold max-w-2xl leading-tight mb-4">
+                You don't need more AI tools. You need one system that runs your business.
+              </p>
+              <p className="text-base md:text-lg mb-8 max-w-2xl leading-snug">
+                Build an AI Business Brain, hire a Dream Team, and do 5 jobs by yourself. No complex tech background. Just a smart way to work.
+              </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <button className="border-hard bg-accent-red text-white font-anton text-2xl px-8 py-4 uppercase tracking-widest hover:bg-black transition-none">
+                  Join The Lab Now — $47/mo
+                </button>
+                <span className="text-xs font-bold uppercase tracking-tight">Cancel anytime.</span>
+              </div>
+            </div>
+            <div className="p-6 md:p-12 md:w-1/3 bg-[#111] text-white flex flex-col justify-center">
+               <h2 className="font-anton text-4xl mb-6 text-accent-red leading-none">THE "I FEEL BEHIND" MOMENT.</h2>
+               <div className="space-y-4 text-sm font-bold leading-tight">
+                  <p>You're using AI… but it doesn't feel like leverage.</p>
+                  <p>It feels like more tabs. More prompts. More starting over.</p>
+                  <p>You've got 87 chat threads open. Every new one = re-explaining your business. Your audience. Your offers. Your voice.</p>
+                  <p className="text-accent-red uppercase text-base">So nothing compounds. Nothing sticks.</p>
+                  <p>Maybe you upgraded to Custom GPTs. Better… but still broken. Because they're static.</p>
+                  <p>Your "AI CMO" still thinks it's January. Old pricing. Old offers. Old messaging.</p>
+                  <p>Every change in your business = manual updates. Docs, prompts, instructions… again and again.</p>
+                  <p className="text-accent-red uppercase text-base">So instead of saving time, you're maintaining AI.</p>
+               </div>
+            </div>
+          </section>
+
+          {/* Solution & Layers Grid */}
+          <section className="grid md:grid-cols-2 gap-8">
+            
+            {/* System Definition */}
+            <div className="border-hard bg-white p-6 md:p-10">
+              <h2 className="font-anton text-4xl mb-6 leading-none border-b-4 border-[#111] pb-4">
+                THE PROBLEM ISN'T ACCESS TO AI. <br/> IT'S THAT YOU DON'T HAVE A SYSTEM.
+              </h2>
+              <div className="text-sm font-bold leading-relaxed mb-8 space-y-4">
+                <p>And then there's the tools. New one every week. Everyone chasing the next shiny thing. But tools don't fix this.</p>
+                <p className="bg-black text-white p-4 uppercase">
+                  A system that: <br/>
+                  <span className="flex items-center gap-2 mt-2"><CheckSquare className="w-4 h-4 text-accent-red"/> Knows your business</span>
+                  <span className="flex items-center gap-2"><CheckSquare className="w-4 h-4 text-accent-red"/> Remembers what matters</span>
+                  <span className="flex items-center gap-2"><CheckSquare className="w-4 h-4 text-accent-red"/> Evolves as you evolve</span>
+                  <span className="flex items-center gap-2"><CheckSquare className="w-4 h-4 text-accent-red"/> And actually does work for you</span>
+                </p>
+                <p className="text-lg uppercase">
+                  Right now, you're chatting with AI. The people pulling ahead have a real system. They built something that works with them. Every day.
+                </p>
+              </div>
+              <h3 className="font-anton text-3xl mb-4 text-accent-red border-t-2 border-[#111] pt-6">WHAT'S INSIDE THE LAB</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { title: "Plug & Play Custom GPTs", desc: "Not links to custom GPTs. Here you get the guts to make them your own. You control the outputs." },
+                  { title: "Plug & Play Claude Skills", desc: "Claude Skills are a total game-changer. They are reusable, purpose-built AI capabilities." },
+                  { title: "Plug & Play Web Apps", desc: "Useful web apps and Claude Artifacts done for you. Import vibe-coded projects immediately." },
+                  { title: "Bonus Trainings", desc: "A library of goodness categorized by type to help you level up your AI operations." },
+                  { title: "Mozi AI", desc: "Access to Alex Hormozi's mind, 24/7. Tap into elite business strategy anytime." },
+                  { title: "Live Q&A Calls", desc: "Share your question on the pinned Q&A thread and I answer them live every week. Replays with time stamps are always available." }
+                ].map((item, idx) => (
+                  <div key={idx} className="border-hard p-4 bg-[#f4f4f0]">
+                    <h4 className="font-bold uppercase text-sm mb-1">{item.title}</h4>
+                    <p className="text-xs leading-tight">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* The 5 Layers */}
+            <div className="border-hard bg-white p-0 flex flex-col">
+              <div className="p-6 md:p-10 border-b-4 border-[#111] bg-accent-red text-white">
+                <h2 className="font-anton text-5xl leading-none mb-4">
+                  THE 5 LAYERS OF AN AI-POWERED BUSINESS
+                </h2>
+                <div className="text-sm font-bold leading-tight space-y-2">
+                  <p>Here's the part most people miss: Tools will change. They always do. New models. New apps. New features every week.</p>
+                  <p>If you build your business around tools… you'll always feel behind. But this? This doesn't change. These 5 layers are the structure underneath everything.</p>
+                  <p>No matter what happens to ChatGPT, Claude, Gemini, or whatever comes next… this is how an AI-powered business actually works.</p>
+                  <p className="mt-4 pt-4 border-t-2 border-white/30 uppercase">
+                    What we're building here is a wrapper around the models. Not just using AI… but creating a system that: plugs into any model, evolves as tools evolve, and keeps your business consistent underneath it all.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex-1 flex flex-col">
+                {[
+                  { num: "01", title: "The AI Engine", icon: <Brain className="w-5 h-5"/>, desc: "The AI model itself. Pick your favorite. This is the raw horsepower, but without the right system, a brilliant engine sits idle. Today we use Claude because it supports the rest of the layers beautifully." },
+                  { num: "02", title: "Context", icon: <Layers className="w-5 h-5"/>, desc: "Where most people stop. This is the uploaded documents, the info you feed it. But static context isn't enough to pivot your messaging when things change." },
+                  { num: "03", title: "Memory", icon: <Database className="w-5 h-5"/>, desc: "Your single source of truth. This layer lives, evolves, and changes with your business. It remembers past launches so you don't have to repeat yourself." },
+                  { num: "04", title: "Execution & Skills", icon: <Workflow className="w-5 h-5"/>, desc: "Not a generic list of skills. Your specific workflows. Imagine choosing a hook and having a full YouTube script or carousel post generated while you sleep." },
+                  { num: "05", title: "Automation", icon: <Play className="w-5 h-5"/>, desc: "Scheduled tasks. An automated pulse hits your inbox at 5 AM. Metric analysis and drafted check-ins prepared for you before you even open your laptop." }
+                ].map((layer, idx) => (
+                  <div key={idx} className="flex border-b-2 border-[#111] last:border-b-0 bg-white">
+                    <div className="w-16 md:w-24 border-r-2 border-[#111] flex flex-col items-center justify-center bg-[#f4f4f0] font-anton text-3xl md:text-4xl text-black">
+                      {layer.num}
+                    </div>
+                    <div className="flex-1 p-4 md:p-6">
+                      <h3 className="font-anton text-2xl uppercase flex items-center gap-2 mb-2">
+                        {layer.icon} {layer.title}
+                      </h3>
+                      <p className="text-sm font-bold leading-snug">{layer.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+          </section>
+
+          {/* About & Results */}
+          <section className="grid md:grid-cols-3 gap-8">
+            <div className="md:col-span-1 border-hard bg-white flex flex-col">
+              <img src="/__mockup/images/gabriel-headshot.jpeg" alt="Gabriel Omat" className="w-full h-64 object-cover border-b-4 border-[#111] grayscale" />
+              <div className="p-6">
+                <h2 className="font-anton text-4xl mb-4 leading-none uppercase">Who's Teaching?</h2>
+                <div className="text-xs font-bold space-y-3">
+                  <p>I'm Gabriel Omat and I built this lab to show coaches, consultants, and service-based business owners how to use AI in a way that actually makes a difference.</p>
+                  <p>Instead of hiring a big team, I built my AI Dream Team. Team members who actually go out and execute on my behalf. Saving me 20+ hours a week.</p>
+                  <p className="bg-black text-white p-3 uppercase">If you're still using AI like it's 2023, I invite you to a whole new paradigm, inside Futureproof.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:col-span-2 border-hard bg-[#111] text-white p-6 md:p-10 flex flex-col">
+              <h2 className="font-anton text-5xl mb-8 leading-none text-accent-red border-b-2 border-white/20 pb-4">REAL RESULTS</h2>
+              <div className="grid sm:grid-cols-2 gap-6 flex-1">
+                {[
+                  { name: "Sarah M.", role: "Business Consultant", quote: "I was spending 15 hours a week just trying to make ChatGPT write in my voice. Setting up the memory layer changed everything. My AI team now drafts proposals that sound exactly like me in 4 minutes." },
+                  { name: "David K.", role: "Executive Coach", quote: "I thought I needed to hire a junior copywriter and an assistant. Instead, I built the 5 layers. I'm doing the output of a 3-person team and my profit margins are the highest they've ever been." },
+                  { name: "Elena R.", role: "Agency Owner", quote: "The Claude Skills module alone is worth 10x the yearly membership. I've completely automated my client onboarding and weekly check-ins. It feels like I cloned my brain." }
+                ].map((testimonial, idx) => (
+                  <div key={idx} className="border-2 border-white p-4 flex flex-col justify-between">
+                    <p className="text-sm font-bold mb-4 uppercase leading-tight">"{testimonial.quote}"</p>
+                    <div className="border-t-2 border-accent-red pt-2 mt-auto">
+                      <p className="font-anton text-xl tracking-wide">{testimonial.name}</p>
+                      <p className="text-xs text-white/70 uppercase font-bold">{testimonial.role}</p>
+                    </div>
+                  </div>
+                ))}
+                
+                <div className="border-2 border-accent-red p-4 bg-accent-red text-black flex flex-col justify-center items-center text-center">
+                    <h3 className="font-anton text-3xl leading-none mb-2">READY TO BUILD YOUR AI BRAIN?</h3>
+                    <button className="border-hard bg-black text-white font-anton text-xl px-4 py-2 uppercase tracking-widest hover:bg-white hover:text-black w-full mt-4">
+                      Join The Lab - $47/mo
+                    </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
+  );
+}
