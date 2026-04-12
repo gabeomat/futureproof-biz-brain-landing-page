@@ -47,7 +47,7 @@ export default function LandingPage() {
               <span className="text-xs font-bold uppercase tracking-tight">Cancel anytime.</span>
             </div>
           </div>
-          <div className="p-6 md:p-12 md:w-1/3 text-white flex flex-col justify-center" style={{ backgroundColor: "#345c72" }}>
+          <div className="p-6 md:p-12 md:w-1/3 text-white flex flex-col justify-center bg-[#2a2e30]" style={{ backgroundColor: "#345c72" }}>
             <h2 className="font-anton text-4xl mb-6 leading-none" style={{ color: "#f46530" }}>
               THE "I FEEL BEHIND" MOMENT.
             </h2>
