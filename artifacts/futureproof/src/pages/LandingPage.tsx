@@ -57,7 +57,7 @@ export default function LandingPage() {
               <p>Maybe you upgraded to Custom GPTs. Better… but still broken. Because they're static.</p>
               <p>Your "AI CMO" still thinks it's January. Old pricing. Old offers. Old messaging.</p>
               <p>Every change in your business = manual updates. Docs, prompts, instructions… again and again.</p>
-              <p className="uppercase text-base" style={{ color: "#f46530" }}>So instead of saving time, you're maintaining AI.</p>
+              <p className="uppercase text-base" style={{ color: "#ff9e7a" }}>So instead of saving time, you're maintaining AI.</p>
             </div>
           </div>
         </section>
