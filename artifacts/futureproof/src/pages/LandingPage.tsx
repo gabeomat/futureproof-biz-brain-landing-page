@@ -11,18 +11,18 @@ import Footer from "@/components/landing/Footer";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen p-4 md:p-8 font-sans bg-background text-foreground">
+    <div className="min-h-screen font-sans bg-background text-foreground overflow-x-hidden">
       <Header />
-      <main className="max-w-7xl mx-auto space-y-8">
+      <main className="max-w-7xl mx-auto space-y-6 md:space-y-8 px-4 md:px-8 pb-4 md:pb-8">
         <section className="border-hard bg-white flex flex-col md:flex-row">
           <HeroSection />
           <PainPoints />
         </section>
-        <section className="grid md:grid-cols-2 gap-8">
+        <section className="grid md:grid-cols-2 gap-6 md:gap-8">
           <SystemDefinition />
           <FiveLayers />
         </section>
-        <section className="grid md:grid-cols-3 gap-8">
+        <section className="grid md:grid-cols-3 gap-6 md:gap-8">
           <AboutCreator />
           <TestimonialsCarousel />
         </section>

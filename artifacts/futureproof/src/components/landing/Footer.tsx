@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-hard bg-white flex flex-col">
       {/* Top row: tagline + CTA */}
       <div className="p-6 md:p-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-b-2 border-foreground">
-        <p className="font-anton text-xl md:text-2xl leading-tight">
+        <p className="font-anton text-base sm:text-xl md:text-2xl leading-tight text-center sm:text-left">
           STOP CHATTING WITH AI. START BUILDING YOUR AI BRAIN.
         </p>
         <CTAButton

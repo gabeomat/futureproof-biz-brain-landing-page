@@ -62,7 +62,7 @@ export default function PricingSection() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="font-anton text-5xl md:text-6xl leading-none mb-2 text-center">
+      <h2 className="font-anton text-3xl sm:text-5xl md:text-6xl leading-none mb-2 text-center">
         CHOOSE YOUR PLAN
       </h2>
       <p className="text-center text-sm font-bold uppercase mb-8 text-secondary">
@@ -97,7 +97,7 @@ export default function PricingSection() {
               </span>
             )}
             <div className="mb-6">
-              <span className="font-anton text-5xl md:text-6xl">
+              <span className="font-anton text-4xl sm:text-5xl md:text-6xl">
                 {plan.price}
               </span>
               <span className="text-lg font-bold">{plan.period}</span>
@@ -135,7 +135,7 @@ export default function PricingSection() {
           href="https://www.skool.com/futureproof-the-evolution-lab/plans"
           variant="primary"
           pulse
-          className="text-2xl px-12 py-5"
+          className="text-base sm:text-xl md:text-2xl px-6 sm:px-12 py-3 sm:py-5"
         >
           Join The Lab Now
         </CTAButton>

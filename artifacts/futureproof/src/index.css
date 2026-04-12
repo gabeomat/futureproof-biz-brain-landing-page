@@ -66,6 +66,14 @@
   --radius: 0rem;
 }
 
+@utility border-hard {
+  border: 2px solid hsl(var(--foreground));
+}
+
+@utility font-anton {
+  font-family: 'Anton', sans-serif;
+}
+
 @layer base {
   * {
     @apply border-border;

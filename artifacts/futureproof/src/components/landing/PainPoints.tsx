@@ -24,7 +24,7 @@ export default function PainPoints() {
       viewport={{ once: true }}
     >
       <motion.h2
-        className="font-anton text-4xl mb-6 leading-none text-primary"
+        className="font-anton text-3xl md:text-4xl mb-6 leading-none text-primary"
         variants={itemVariants}
       >
         Sound familiar?

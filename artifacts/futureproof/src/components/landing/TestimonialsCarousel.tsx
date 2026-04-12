@@ -42,7 +42,7 @@ export default function TestimonialsCarousel() {
 
   return (
     <div className="md:col-span-2 border-hard text-white p-6 md:p-10 flex flex-col bg-foreground">
-      <h2 className="font-anton text-5xl mb-8 leading-none pb-4 text-primary border-b-2 border-white/20">
+      <h2 className="font-anton text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-none pb-4 text-primary border-b-2 border-white/20">
         REAL RESULTS
       </h2>
 
@@ -51,18 +51,18 @@ export default function TestimonialsCarousel() {
         setApi={setApi}
         className="w-full flex-1"
       >
-        <CarouselContent>
+        <CarouselContent className="-ml-2 md:-ml-4">
           {testimonials.map((testimonial, idx) => (
             <CarouselItem
               key={idx}
-              className="basis-full md:basis-1/2 pb-3 pr-3"
+              className="basis-full md:basis-1/2 pb-4 pl-2 md:pl-4 pr-4"
             >
               <div className="relative h-full">
                 {/* Offset shadow card */}
                 <div className="absolute inset-0 translate-x-3 translate-y-3 bg-primary" />
                 {/* Main card */}
                 <motion.div
-                  className="relative p-6 md:p-8 flex flex-col justify-between h-full bg-foreground border-2 border-white/30 transition-colors duration-200 hover:border-primary"
+                  className="relative p-4 sm:p-6 md:p-8 flex flex-col justify-between h-full bg-foreground border-2 border-white/30 transition-colors duration-200 hover:border-primary"
                   whileHover={{ x: 2, y: 2 }}
                 >
                   <p className="text-base font-bold mb-4 uppercase leading-relaxed">

@@ -48,7 +48,7 @@ export default function FiveLayers() {
   return (
     <div className="border-hard bg-white p-0 flex flex-col">
       <div className="p-6 md:p-10 text-white border-b-4 border-foreground bg-primary">
-        <h2 className="font-anton text-5xl leading-none mb-4">
+        <h2 className="font-anton text-3xl sm:text-4xl md:text-5xl leading-none mb-4">
           THE 5 LAYERS OF AN AI-POWERED BUSINESS
         </h2>
         <div className="text-sm font-bold leading-tight space-y-2">

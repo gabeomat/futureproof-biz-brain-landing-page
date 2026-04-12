@@ -32,14 +32,14 @@ export default function HeroSection() {
       </motion.div>
 
       <motion.h1
-        className="font-anton text-6xl md:text-8xl leading-[0.85] mb-6"
+        className="font-anton text-4xl sm:text-6xl md:text-8xl leading-[0.85] mb-6"
         variants={childVariants}
       >
         THE EVOLUTION <br /> <span className="text-primary">LAB.</span>
       </motion.h1>
 
       <motion.p
-        className="text-xl md:text-2xl font-bold max-w-2xl leading-tight mb-4"
+        className="text-lg sm:text-xl md:text-2xl font-bold max-w-2xl leading-tight mb-4"
         variants={childVariants}
       >
         You don't need more AI tools. You need one system that runs your business.
@@ -63,7 +63,7 @@ export default function HeroSection() {
           href="https://www.skool.com/futureproof-the-evolution-lab/plans"
           variant="primary"
           pulse
-          className="text-2xl px-8 py-4"
+          className="text-base sm:text-xl md:text-2xl px-5 sm:px-8 py-3 sm:py-4"
         >
           Join The Lab Now — $47/mo
         </CTAButton>

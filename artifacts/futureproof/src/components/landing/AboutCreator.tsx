@@ -12,12 +12,12 @@ export default function AboutCreator() {
       <img
         src="/images/gabriel-headshot.jpeg"
         alt="Gabriel Omat"
-        className="w-full h-96 object-cover object-center border-b-4 border-foreground"
+        className="w-full h-64 sm:h-80 md:h-96 object-cover object-center border-b-4 border-foreground"
         loading="lazy"
         decoding="async"
       />
       <div className="p-6">
-        <h2 className="font-anton text-4xl mb-4 leading-none uppercase">
+        <h2 className="font-anton text-3xl md:text-4xl mb-4 leading-none uppercase">
           Who's Teaching?
         </h2>
         <div className="text-xs font-bold space-y-3">

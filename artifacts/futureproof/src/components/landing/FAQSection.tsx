@@ -41,7 +41,7 @@ const faqItems = [
 export default function FAQSection() {
   return (
     <section className="border-hard bg-white p-6 md:p-10">
-      <h2 className="font-anton text-4xl mb-6 leading-none pb-4 border-b-4 border-foreground">
+      <h2 className="font-anton text-2xl sm:text-3xl md:text-4xl mb-6 leading-tight pb-4 border-b-4 border-foreground">
         FREQUENTLY ASKED QUESTIONS
       </h2>
       <Accordion type="single" collapsible className="w-full">
@@ -51,7 +51,7 @@ export default function FAQSection() {
             value={`item-${idx}`}
             className="border-hard border-b-0 last:border-b-0 [&:not(:last-child)]:mb-2"
           >
-            <AccordionTrigger className="font-anton text-xl uppercase p-4 hover:bg-muted transition-colors hover:no-underline">
+            <AccordionTrigger className="font-anton text-base md:text-xl uppercase p-3 md:p-4 hover:bg-muted transition-colors hover:no-underline text-left">
               {item.question}
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4 text-sm font-bold leading-relaxed">

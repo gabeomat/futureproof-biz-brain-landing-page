@@ -54,9 +54,8 @@ const features = [
 export default function SystemDefinition() {
   return (
     <div className="border-hard bg-white p-6 md:p-10 flex flex-col">
-      <h2 className="font-anton text-4xl mb-6 leading-none pb-4 border-b-4 border-foreground">
-        THE PROBLEM ISN'T ACCESS TO AI. <br /> IT'S THAT YOU DON'T HAVE A
-        SYSTEM.
+      <h2 className="font-anton text-2xl sm:text-3xl md:text-4xl mb-6 leading-tight pb-4 border-b-4 border-foreground">
+        THE PROBLEM ISN'T ACCESS TO AI. IT'S THAT YOU DON'T HAVE A SYSTEM.
       </h2>
 
       <div className="text-sm font-bold leading-relaxed mb-8 space-y-4">
@@ -104,7 +103,7 @@ export default function SystemDefinition() {
         </p>
       </div>
 
-      <h3 className="font-anton text-3xl mb-4 pt-6 border-t-2 border-foreground text-primary">
+      <h3 className="font-anton text-2xl md:text-3xl mb-4 pt-6 border-t-2 border-foreground text-primary">
         WHAT'S INSIDE THE LAB
       </h3>
 
