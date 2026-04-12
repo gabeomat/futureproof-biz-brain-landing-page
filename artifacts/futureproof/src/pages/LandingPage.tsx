@@ -53,7 +53,7 @@ export default function LandingPage() {
               <p>You're using AI… but it doesn't feel like leverage.</p>
               <p>It feels more like going down rabbit holes that waste your time.</p>
               <p>You've got 87 chat threads in ChatGPT. Every new one = re-explaining your business. Your audience. Your offers. Your voice.</p>
-              <p className="uppercase text-base" style={{ color: "#f46530" }}>So nothing compounds. Nothing sticks.</p>
+              <p className="uppercase text-base text-[#d4edf4]" style={{ color: "#f46530" }}>So nothing compounds. Nothing sticks.</p>
               <p>Maybe you upgraded to Custom GPTs. Better… but still broken. Because they're static.</p>
               <p>Your "AI CMO" still thinks it's January. Old pricing. Old offers. Old messaging.</p>
               <p>Every change in your business = manual updates. Docs, prompts, instructions… again and again.</p>
