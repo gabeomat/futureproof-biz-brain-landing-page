@@ -74,7 +74,6 @@ export default function LandingPage() {
               THE PROBLEM ISN'T ACCESS TO AI. <br /> IT'S THAT YOU DON'T HAVE A SYSTEM.
             </h2>
             <div className="text-sm font-bold leading-relaxed mb-8 space-y-4">
-              <p>And then there's the tools. New one every week. Everyone chasing the next shiny thing. But tools don't fix this.</p>
               <p className="text-white p-4 uppercase" style={{ backgroundColor: "#345c72" }}>
                 A system that: <br />
                 <span className="flex items-center gap-2 mt-2">
