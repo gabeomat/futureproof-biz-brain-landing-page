@@ -253,7 +253,7 @@ export default function LandingPage() {
       </main>
       <style>{`
         .manifesto-root {
-          font-family: 'Space Mono', monospace;
+          font-family: 'DM Sans', sans-serif;
           background-color: #ffffff;
           color: #2a2e30;
         }
