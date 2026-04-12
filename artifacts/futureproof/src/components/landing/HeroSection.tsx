@@ -28,7 +28,7 @@ export default function HeroSection() {
         className="inline-block border-hard px-3 py-1 text-white text-xs font-bold uppercase mb-6 bg-secondary"
         variants={childVariants}
       >
-        Futureproof Vol. 1
+        FUTUREPROOF
       </motion.div>
 
       <motion.h1
