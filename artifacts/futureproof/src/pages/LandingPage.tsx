@@ -214,7 +214,6 @@ export default function LandingPage() {
                   <p className="text-sm font-bold mb-4 uppercase leading-tight">"{testimonial.quote}"</p>
                   <div className="pt-2 mt-auto" style={{ borderTop: "2px solid #f46530" }}>
                     <p className="font-anton text-xl tracking-wide">{testimonial.name}</p>
-                    {testimonial.role && <p className="text-xs uppercase font-bold" style={{ color: "#ff9e7a" }}>{testimonial.role}</p>}
                   </div>
                 </div>
               ))}
