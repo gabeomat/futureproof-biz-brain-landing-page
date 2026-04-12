@@ -48,9 +48,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="p-6 md:p-12 md:w-1/3 text-white flex flex-col justify-center" style={{ backgroundColor: "#2a2e30" }}>
-            <h2 className="font-anton text-4xl mb-6 leading-none" style={{ color: "#f46530" }}>
-              THE "I FEEL BEHIND" MOMENT.
-            </h2>
+            <h2 className="font-anton text-4xl mb-6 leading-none" style={{ color: "#f46530" }}>Sound familiar?</h2>
             <div className="space-y-4 text-sm font-bold leading-tight">
               <p>You're using AI… but it doesn't feel like leverage.</p>
               <p>It feels more like going down rabbit holes that waste your time.</p>
