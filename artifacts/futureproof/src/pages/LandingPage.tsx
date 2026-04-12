@@ -206,15 +206,15 @@ export default function LandingPage() {
             </h2>
             <div className="grid sm:grid-cols-2 gap-6 flex-1">
               {[
-                { name: "Sarah M.", role: "Business Consultant", quote: "I was spending 15 hours a week just trying to make ChatGPT write in my voice. Setting up the memory layer changed everything. My AI team now drafts proposals that sound exactly like me in 4 minutes." },
-                { name: "David K.", role: "Executive Coach", quote: "I thought I needed to hire a junior copywriter and an assistant. Instead, I built the 5 layers. I'm doing the output of a 3-person team and my profit margins are the highest they've ever been." },
-                { name: "Elena R.", role: "Agency Owner", quote: "The Claude Skills module alone is worth 10x the yearly membership. I've completely automated my client onboarding and weekly check-ins. It feels like I cloned my brain." },
+                { name: "Inesha F.", role: "", quote: "If you have a business...YOU NEED TO DO THIS CHALLENGE! I setup my business workspace and I am so impressed with it. Since building it out, the level of 'on point' it is with its output far surpasses the use of a project for me...and I thought I had my project locked in. So make sure you guys JUMP IN!!!" },
+                { name: "Michelle P.", role: "", quote: "Completed day 01 and I'm beyond happy! Finally, something that actually helps me spend the wee time I have working and not constantly catching up!" },
+                { name: "Paula R.", role: "One week old member", quote: "Holy Smokes!! I joined for the 5-day challenge - built my AI brain, and I can't believe all I have learned and accomplished for my business in the last week!!" },
               ].map((testimonial, idx) => (
                 <div key={idx} className="p-4 flex flex-col justify-between" style={{ border: "2px solid rgba(255,255,255,0.3)" }}>
                   <p className="text-sm font-bold mb-4 uppercase leading-tight">"{testimonial.quote}"</p>
                   <div className="pt-2 mt-auto" style={{ borderTop: "2px solid #f46530" }}>
                     <p className="font-anton text-xl tracking-wide">{testimonial.name}</p>
-                    <p className="text-xs uppercase font-bold" style={{ color: "#ff9e7a" }}>{testimonial.role}</p>
+                    {testimonial.role && <p className="text-xs uppercase font-bold" style={{ color: "#ff9e7a" }}>{testimonial.role}</p>}
                   </div>
                 </div>
               ))}
