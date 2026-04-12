@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --font-sans: 'Space Mono', monospace;
+  --font-display: 'Anton', sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Brand palette */
+  /* #ffffff white */
+  --background: 0 0% 100%;
+  /* #2a2e30 near-black */
+  --foreground: 200 7% 18%;
+  /* #2a2e30 */
+  --border: 200 7% 18%;
+  /* #f46530 burnt orange */
+  --primary: 18 90% 57%;
+  --primary-foreground: 0 0% 100%;
+  /* #345c72 dark steel blue */
+  --secondary: 204 37% 33%;
+  --secondary-foreground: 0 0% 100%;
+  /* #d4edf4 icy blue */
+  --muted: 199 55% 89%;
+  --muted-foreground: 200 7% 18%;
+  /* #f46530 */
+  --accent: 18 90% 57%;
+  --accent-foreground: 0 0% 100%;
+  /* red for destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  /* #d4edf4 for inputs */
+  --input: 199 55% 89%;
+  --ring: 18 90% 57%;
+  --card: 0 0% 100%;
+  --card-foreground: 200 7% 18%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 200 7% 18%;
+  --radius: 0rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Mono', monospace;
+  }
+}
