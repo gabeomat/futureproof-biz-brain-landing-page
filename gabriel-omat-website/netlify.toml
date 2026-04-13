@@ -1,0 +1,8 @@
+[build]
+  command = "vite build --config vite.config.ts"
+  publish = "dist/public"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

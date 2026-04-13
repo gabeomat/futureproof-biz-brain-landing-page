@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulting — Gabriel Omat | Claude Enterprise & AI Implementation</title>
+  <meta name="description" content="I help organizations close the AI skill gap with Claude Enterprise. From strategy to hands-on implementation, I get your team productive with AI." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <span class="nav-logo-text">Gabriel Omat</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="consulting.html" class="active">Consulting</a></li>
+        <li><a href="https://www.skool.com/futureproof" target="_blank" rel="noopener" class="nav-cta">Join Futureproof</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Close the AI Skill Gap</h1>
+      <p>I help organizations implement Claude Enterprise and get teams productive with AI — not just aware of it.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONSULTING CONTEXT ===== -->
+  <section class="consulting-context">
+    <div class="container">
+      <div class="consulting-split">
+        <div class="consulting-text animate-in">
+          <h2>Your team has AI tools. They're not using them.</h2>
+          <p>Most organizations buy AI licenses and hope adoption happens. It doesn't. People default to old workflows because no one showed them how AI fits into what they actually do every day.</p>
+          <p>I bridge that gap. With 28 years of corporate leadership experience and hands-on AI implementation expertise, I help organizations move from "we have AI" to "our team runs on AI."</p>
+          <p>My specialty is <strong>Claude Enterprise by Anthropic</strong> — the most capable AI platform for business teams. I design workflows, train teams, and build systems that make AI adoption stick.</p>
+        </div>
+        <div class="consulting-highlights animate-in">
+          <div class="highlight-card">
+            <h4>Strategy</h4>
+            <p>Identify where AI creates the highest leverage in your specific operations. No generic playbooks.</p>
+          </div>
+          <div class="highlight-card">
+            <h4>Implementation</h4>
+            <p>Custom AI workflow design for your team's actual processes — built in Claude Enterprise.</p>
+          </div>
+          <div class="highlight-card">
+            <h4>Training</h4>
+            <p>Hands-on sessions where your people build real workflows, not watch slides about AI potential.</p>
+          </div>
+          <div class="highlight-card">
+            <h4>Advisory</h4>
+            <p>Ongoing support as your team scales AI adoption. I stay in the loop until it sticks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INQUIRY FORM ===== -->
+  <section class="inquiry-section">
+    <div class="container">
+      <div class="form-wrapper animate-in">
+        <div class="form-header">
+          <h2>Let's Talk</h2>
+          <p>Tell me a bit about your organization and what you're looking to accomplish with AI. I'll follow up within 48 hours.</p>
+        </div>
+
+        <form name="consulting-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+          <!-- Honeypot for spam -->
+          <p class="hidden-field" aria-hidden="true">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="First and last name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Organization</label>
+              <input type="text" id="company" name="company" placeholder="Company or organization name" />
+            </div>
+            <div class="form-group">
+              <label for="team-size">Team Size</label>
+              <select id="team-size" name="team-size">
+                <option value="" disabled selected>Select team size</option>
+                <option value="1-10">1–10 people</option>
+                <option value="11-50">11–50 people</option>
+                <option value="51-200">51–200 people</option>
+                <option value="200+">200+ people</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">What are you looking to accomplish with AI?</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your goals, current challenges, or what prompted you to reach out."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">Send Inquiry →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="footer-logo-text">Gabriel Omat</span>
+          <p>AI Strategist & Consultant</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="consulting.html">Consulting</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+      <p class="footer-bottom">&copy; 2026 Gabriel Omat. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
