@@ -6,9 +6,9 @@ import InquiryForm from "@/components/consulting/InquiryForm";
 
 export default function ConsultingPage() {
   return (
-    <div className="min-h-screen font-sans bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-cream text-ink overflow-x-hidden">
       <Header />
-      <main className="max-w-7xl mx-auto space-y-6 md:space-y-8 px-4 md:px-8 pb-4 md:pb-8">
+      <main className="max-w-[88rem] mx-auto px-4 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14 space-y-0">
         <PageHero />
         <ConsultingContext />
         <InquiryForm />

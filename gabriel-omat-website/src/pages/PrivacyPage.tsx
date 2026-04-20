@@ -4,20 +4,24 @@ import { motion } from "framer-motion";
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen font-sans bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-cream text-ink overflow-x-hidden">
       <Header />
-      <main className="max-w-7xl mx-auto space-y-6 md:space-y-8 px-4 md:px-8 pb-4 md:pb-8">
+      <main className="max-w-[88rem] mx-auto space-y-6 md:space-y-8 px-4 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14">
         <motion.section
-          className="border-hard bg-muted p-8 md:p-16 text-center"
+          className="on-anchor bg-anchor text-cream rounded-[2rem] md:rounded-[3rem] overflow-hidden px-8 md:px-16 py-16 md:py-24"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <h1 className="font-editorial text-4xl sm:text-5xl md:text-7xl leading-[0.95] mb-4">
-            Privacy <span className="text-primary italic">Policy</span>
+          <span className="eyebrow mb-6 text-cream/85">
+            <span className="rule-coral" aria-hidden />
+            The Fine Print
+          </span>
+          <h1 className="display-sans text-5xl md:text-7xl leading-[0.9] mb-6">
+            Privacy <em>policy.</em>
           </h1>
-          <p className="text-sm font-bold uppercase tracking-wider">
-            Last updated: April 12, 2026
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cream/70">
+            Last updated · April 12, 2026
           </p>
         </motion.section>
 

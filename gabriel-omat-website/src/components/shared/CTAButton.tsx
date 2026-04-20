@@ -11,6 +11,14 @@ interface CTAButtonProps {
   type?: "button" | "submit";
 }
 
+/**
+ * Dark Anchor Editorial CTA.
+ *
+ * - primary:   pill, burnt orange on cream or anchor backgrounds
+ * - outline:   pill, transparent with 1px rule — used inside dark anchor sections
+ *              or alongside a primary CTA as a quieter alternate
+ * - secondary: deep anchor fill with cream text (occasional dark CTA on cream)
+ */
 export default function CTAButton({
   href,
   onClick,
@@ -21,29 +29,28 @@ export default function CTAButton({
   type,
 }: CTAButtonProps) {
   const variantClasses = {
-    primary: "bg-primary text-white",
-    secondary: "bg-foreground text-white",
-    outline: "bg-white text-foreground",
+    primary:
+      "bg-burnt text-cream hover:bg-[color:var(--color-burnt-deep)]",
+    secondary:
+      "bg-anchor text-cream hover:bg-[color:var(--color-anchor-deep)]",
+    outline:
+      "bg-transparent border border-current hover:bg-current hover:text-anchor",
   }[variant];
 
   const sharedProps = {
     className: cn(
+      "inline-flex items-center justify-center gap-2 rounded-full",
+      "px-7 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em]",
+      "whitespace-nowrap cursor-pointer select-none",
+      "transition-colors duration-200",
       variantClasses,
-      "border-hard font-editorial tracking-wide hover:opacity-90 transition-opacity inline-block text-center cursor-pointer",
       className,
     ),
-    style: { boxShadow: "4px 4px 0 hsl(var(--foreground))" } as React.CSSProperties,
-    whileHover: {
-      y: -2,
-      boxShadow: "6px 6px 0 hsl(var(--foreground))",
-    },
-    whileTap: {
-      y: 2,
-      boxShadow: "0px 0px 0 hsl(var(--foreground))",
-    },
-    animate: pulse ? { scale: [1, 1.02, 1] } : undefined,
+    whileHover: { y: -1 },
+    whileTap: { y: 1 },
+    animate: pulse ? { scale: [1, 1.03, 1] } : undefined,
     transition: pulse
-      ? { scale: { repeat: Infinity, duration: 2, ease: "easeInOut" as const } }
+      ? { scale: { repeat: Infinity, duration: 2.4, ease: "easeInOut" as const } }
       : undefined,
   };
 
@@ -56,6 +63,7 @@ export default function CTAButton({
         {...sharedProps}
       >
         {children}
+        <span aria-hidden className="text-base leading-none">→</span>
       </motion.a>
     );
   }
@@ -63,6 +71,7 @@ export default function CTAButton({
   return (
     <motion.button type={type || "button"} onClick={onClick} {...sharedProps}>
       {children}
+      <span aria-hidden className="text-base leading-none">→</span>
     </motion.button>
   );
 }

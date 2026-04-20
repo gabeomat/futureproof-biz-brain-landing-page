@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import SectionHeader from "@/components/shared/SectionHeader";
 
 const containerVariants = {
   hidden: {},
@@ -8,43 +7,53 @@ const containerVariants = {
 
 const statVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const stats = [
-  { number: "7-Figure", label: "Previous Business Built" },
-  { number: "28 Years", label: "Corporate Leadership" },
-  { number: "AI-First", label: "Operating System" },
-  { number: "Daily", label: "Practitioner — Not Just Teacher" },
+  { number: "7-Figure", label: "Previous business built" },
+  { number: "28 Years", label: "Corporate leadership" },
+  { number: "AI-First", label: "Operating system" },
+  { number: "Daily", label: "Practitioner, not just teacher" },
 ];
 
 export default function SocialProof() {
   return (
-    <section className="border-hard bg-foreground text-white p-6 md:p-10">
-      <SectionHeader
-        title="The Track Record"
-        subtitle="I've built, lost, and rebuilt — the hard way and the smart way."
-      />
+    <section className="on-cream py-20 md:py-28 px-2 md:px-6">
+      <div className="flex flex-col items-start md:items-center md:text-center mb-12 md:mb-16">
+        <span className="eyebrow mb-5 text-ink-soft">
+          <span className="rule-coral" aria-hidden />
+          On the Record
+        </span>
+        <h2 className="display-sans text-4xl md:text-5xl lg:text-6xl leading-[0.95] max-w-3xl">
+          The track record.
+        </h2>
+        <p className="mt-5 font-serif italic text-xl md:text-2xl text-anchor">
+          Built, lost, and rebuilt — the hard way and the smart way.
+        </p>
+      </div>
 
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-4 gap-0"
+        className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-ink/15 border border-ink/15 rounded-[1.5rem] overflow-hidden bg-cream-soft"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         {stats.map((stat, idx) => (
           <motion.div
             key={idx}
-            className={`p-4 md:p-6 text-center ${
-              idx < stats.length - 1 ? "border-r-0 md:border-r-2 border-white/20" : ""
-            } ${idx < 2 ? "border-b-2 md:border-b-0 border-white/20" : ""}`}
+            className="p-8 md:p-10 flex flex-col items-start gap-4"
             variants={statVariants}
           >
-            <div className="font-editorial text-2xl sm:text-3xl md:text-4xl text-primary mb-2">
+            <span className="eyebrow text-ink-soft">
+              <span className="rule-coral" aria-hidden />
+              No. {String(idx + 1).padStart(2, "0")}
+            </span>
+            <div className="display-sans text-3xl md:text-[2.5rem] leading-[0.95] text-anchor">
               {stat.number}
             </div>
-            <div className="text-xs font-bold uppercase tracking-wider opacity-80">
+            <div className="text-sm text-ink-soft leading-snug font-medium">
               {stat.label}
             </div>
           </motion.div>

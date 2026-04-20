@@ -1,50 +1,53 @@
-import { Zap } from "lucide-react";
 import CTAButton from "./CTAButton";
 
 export default function FPFooter() {
   return (
-    <footer className="border-hard bg-white flex flex-col">
-      {/* Top row: tagline + CTA */}
-      <div className="p-6 md:p-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-b-2 border-foreground">
-        <p className="font-anton text-base sm:text-xl md:text-2xl leading-tight text-center sm:text-left">
-          STOP CHATTING WITH AI. START BUILDING YOUR AI BRAIN.
-        </p>
-        <CTAButton
-          href="https://www.skool.com/futureproof-the-evolution-lab/plans"
-          variant="primary"
-          className="text-base px-6 py-3 whitespace-nowrap"
-        >
-          Join The Lab — $47/mo
-        </CTAButton>
-      </div>
-
-      {/* Middle row: logo + price */}
-      <div className="p-4 md:p-6 flex flex-col sm:flex-row justify-between items-center gap-4 border-b-2 border-foreground">
-        <div className="flex items-center gap-2">
-          <Zap className="w-5 h-5 text-primary" style={{ fill: "currentColor" }} />
-          <span className="font-anton text-xl tracking-wide">FUTUREPROOF</span>
+    <footer className="on-anchor bg-anchor text-cream rounded-[2rem] md:rounded-[3rem] overflow-hidden mt-6 md:mt-10">
+      {/* Tagline + CTA */}
+      <div className="px-8 md:px-16 py-14 md:py-20 grid md:grid-cols-[1.4fr_1fr] gap-10 md:gap-16 items-end border-b border-anchor-soft">
+        <div>
+          <span className="eyebrow mb-6 text-cream/80">
+            <span className="rule-coral" aria-hidden />
+            Closing Remarks
+          </span>
+          <h3 className="display-sans text-4xl md:text-5xl lg:text-[3.25rem] leading-[0.95] max-w-xl">
+            Stop chatting with AI. Start <em>building</em> your AI brain.
+          </h3>
         </div>
-        <p className="text-xs font-bold uppercase text-secondary">
-          The Evolution Lab &mdash; $47/month &mdash; Cancel anytime
-        </p>
-      </div>
-
-      {/* Bottom row: copyright + links */}
-      <div className="p-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-bold uppercase">
-        <span>&copy; 2026 Level Up Your Life Coaching LLC. All rights reserved.</span>
-        <div className="flex gap-4">
-          <a href="/terms" className="hover:text-primary transition-colors">
-            Terms
-          </a>
-          <a href="/privacy" className="hover:text-primary transition-colors">
-            Privacy
-          </a>
+        <div className="flex md:justify-end">
+          <CTAButton
+            href="https://www.skool.com/futureproof-the-evolution-lab/plans"
+            variant="primary"
+          >
+            Join The Lab — $47/mo
+          </CTAButton>
         </div>
       </div>
 
-      {/* Facebook disclaimer */}
-      <div className="px-4 pb-4 pt-2">
-        <p className="text-[10px] text-foreground/40 text-center leading-relaxed">
+      {/* Wordmark */}
+      <div className="px-8 md:px-16 py-8 md:py-10 grid md:grid-cols-3 gap-6 items-center border-b border-anchor-soft">
+        <span className="display-sans text-xl md:text-2xl tracking-[0.08em]">FUTUREPROOF</span>
+        <span className="eyebrow text-cream/70 md:justify-self-center">
+          <span className="rule-coral" aria-hidden />
+          $47/month · Cancel anytime
+        </span>
+        <span className="text-xs font-medium text-cream/60 md:justify-self-end tracking-wide">
+          The Evolution Lab
+        </span>
+      </div>
+
+      {/* Links */}
+      <div className="px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream/70">
+        <span>&copy; 2026 Level Up Your Life Coaching LLC</span>
+        <div className="flex gap-6">
+          <a href="/terms" className="hover:text-coral transition-colors">Terms</a>
+          <a href="/privacy" className="hover:text-coral transition-colors">Privacy</a>
+        </div>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="px-8 md:px-16 pb-8 pt-2">
+        <p className="text-[10px] text-cream/40 text-center leading-relaxed">
           This site is not a part of the Facebook website or Facebook Inc.
           Additionally, this site is NOT endorsed by Facebook in any way.
           FACEBOOK is a trademark of FACEBOOK, Inc.

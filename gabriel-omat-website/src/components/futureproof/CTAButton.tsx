@@ -17,45 +17,33 @@ export default function CTAButton({
   className,
 }: CTAButtonProps) {
   const variantClasses =
-    variant === "primary" ? "bg-primary text-white" : "bg-foreground text-white";
+    variant === "primary"
+      ? "bg-burnt text-cream hover:bg-[color:var(--color-burnt-deep)]"
+      : "bg-anchor text-cream hover:bg-[color:var(--color-anchor-deep)]";
 
   return (
     <motion.a
       href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener" : undefined}
       className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5",
+        "text-[13px] font-bold uppercase tracking-[0.12em] whitespace-nowrap",
+        "transition-colors duration-200",
         variantClasses,
-        "border-hard font-anton uppercase tracking-widest hover:opacity-90 transition-opacity inline-block text-center",
-        className
+        className,
       )}
-      style={{ boxShadow: "4px 4px 0 hsl(var(--foreground))" }}
-      whileHover={{
-        y: -2,
-        boxShadow: "6px 6px 0 hsl(var(--foreground))",
-      }}
-      whileTap={{
-        y: 2,
-        boxShadow: "0px 0px 0 hsl(var(--foreground))",
-      }}
-      animate={
-        pulse
-          ? {
-              scale: [1, 1.02, 1],
-            }
-          : undefined
-      }
+      whileHover={{ y: -1 }}
+      whileTap={{ y: 1 }}
+      animate={pulse ? { scale: [1, 1.03, 1] } : undefined}
       transition={
         pulse
-          ? {
-              scale: {
-                repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut",
-              },
-            }
+          ? { scale: { repeat: Infinity, duration: 2.4, ease: "easeInOut" } }
           : undefined
       }
     >
       {children}
+      <span aria-hidden className="text-base leading-none">→</span>
     </motion.a>
   );
 }

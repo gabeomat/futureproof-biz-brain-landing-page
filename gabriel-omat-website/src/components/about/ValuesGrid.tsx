@@ -2,65 +2,78 @@ import { motion } from "framer-motion";
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 const values = [
   {
-    title: "Built in Reality",
+    number: "i.",
+    title: "Built in reality",
     description:
-      "Everything I teach, I use daily while working a full-time corporate job. If it holds up under those constraints, it'll hold up under yours.",
+      "Everything I teach, I run in my own business first. The Living Workspace powers my content, my ads, my email, my client delivery. If a system can't hold up in my world, it doesn't make it out to you.",
   },
   {
-    title: "Both Sides of the Table",
+    number: "ii.",
+    title: "Both sides of the table",
     description:
-      "28 years in corporate + 7-figure entrepreneur. I understand how individuals AND organizations adopt AI differently.",
+      "I've spent 28 years in corporate and 10 years as a business owner. I know first-hand how to use AI as leverage — whether you're working with a large team or a solopreneur business.",
   },
   {
-    title: "Grit Over Hype",
+    number: "iii.",
+    title: "Reality over hype",
     description:
-      "I've been through the hard stuff. I lead with honesty, direct advice, and strategies that actually hold up under pressure.",
+      "I don't chase the next shiny new thing. I focus on the things that actually matter — the things that result in a tangible ROI.",
   },
   {
-    title: "Implementation, Not Theory",
+    number: "iv.",
+    title: "Integrity & transparency",
     description:
-      "I don't do overviews and awareness decks. I build live systems, train hands-on, and make sure AI sticks in your workflow.",
+      "I'm not a guru. I'm a midlife woman business owner with a knack for understanding how AI works and how to make it work for you — without getting too deep in the tech.",
   },
 ];
 
 export default function ValuesGrid() {
   return (
-    <section className="border-hard bg-muted p-6 md:p-10">
-      <h2 className="font-editorial text-2xl sm:text-3xl md:text-4xl leading-tight mb-8 text-center">
-        What I Stand For
-      </h2>
+    <section className="on-cream bg-cream-deep rounded-[2rem] md:rounded-[3rem] px-8 md:px-16 py-16 md:py-24">
+      <div className="flex flex-col items-start md:items-center md:text-center mb-12 md:mb-16">
+        <span className="eyebrow mb-5 text-ink-soft">
+          <span className="rule-coral" aria-hidden />
+          The Credo
+        </span>
+        <h2 className="display-sans text-4xl md:text-5xl leading-[0.95] max-w-2xl">
+          What I <em>stand for.</em>
+        </h2>
+      </div>
 
       <motion.div
-        className="grid sm:grid-cols-2 gap-6"
+        className="grid sm:grid-cols-2 gap-6 md:gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         {values.map((value, idx) => (
-          <motion.div
+          <motion.article
             key={idx}
-            className="border-hard bg-white p-6"
+            className="bg-cream-soft rounded-[1.5rem] p-8 md:p-10 border border-ink/10 hover:border-anchor/40 transition-colors"
             variants={cardVariants}
-            whileHover={{
-              y: -4,
-              boxShadow: "4px 4px 0 hsl(200, 7%, 18%)",
-              transition: { type: "spring", stiffness: 300, damping: 20 },
-            }}
           >
-            <h4 className="font-editorial text-lg mb-2">{value.title}</h4>
-            <p className="text-xs font-bold leading-relaxed">{value.description}</p>
-          </motion.div>
+            <div className="flex items-baseline gap-4 mb-6">
+              <span className="font-serif italic text-3xl text-coral leading-none">{value.number}</span>
+              <span className="h-px flex-1 bg-ink/15" />
+            </div>
+            <h4 className="display-sans text-2xl leading-[1.05] mb-3 text-anchor">
+              {value.title}
+            </h4>
+            <p className="text-[15px] leading-relaxed text-ink-soft">
+              {value.description}
+            </p>
+          </motion.article>
         ))}
       </motion.div>
     </section>

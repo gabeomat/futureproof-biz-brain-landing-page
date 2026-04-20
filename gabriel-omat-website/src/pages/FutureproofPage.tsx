@@ -11,10 +11,10 @@ import FAQSection from "@/components/futureproof/FAQSection";
 
 export default function FutureproofPage() {
   return (
-    <div className="min-h-screen font-sans bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-cream text-ink overflow-x-hidden">
       <FPHeader />
-      <main className="max-w-7xl mx-auto space-y-6 md:space-y-8 px-4 md:px-8 pb-4 md:pb-8">
-        <section className="border-hard bg-white flex flex-col md:flex-row">
+      <main className="max-w-[88rem] mx-auto px-4 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14 space-y-6 md:space-y-8">
+        <section className="rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col md:flex-row">
           <FPHero />
           <PainPoints />
         </section>
