@@ -3,6 +3,26 @@
   publish = "dist/public"
 
 [[redirects]]
+  from = "/workshop"
+  to = "/workshop/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/workshop/"
+  to = "/workshop/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/workshop/thanks"
+  to = "/workshop/thanks/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/workshop/thanks/"
+  to = "/workshop/thanks/index.html"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

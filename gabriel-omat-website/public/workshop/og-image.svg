@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F3D3A"/>
+      <stop offset="100%" stop-color="#17302D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#fade)"/>
+
+  <!-- Decorative coral rule -->
+  <rect x="80" y="92" width="56" height="3" fill="#F47C70"/>
+
+  <!-- Eyebrow -->
+  <text x="156" y="100" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#F47C70" letter-spacing="3">LIVE WORKSHOP · 60 MINUTES</text>
+
+  <!-- Title row 1 -->
+  <text x="80" y="220" font-family="Helvetica, Arial, sans-serif" font-size="88" font-weight="800" fill="#F8F5EF" letter-spacing="-2">The Living</text>
+
+  <!-- Title row 2 with italic accent -->
+  <text x="80" y="320" font-family="Georgia, 'Instrument Serif', serif" font-style="italic" font-size="104" font-weight="400" fill="#F47C70" letter-spacing="-2">Workspace.</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="400" font-family="Georgia, serif" font-style="italic" font-size="32" fill="#F8F5EF" opacity="0.82" letter-spacing="-0.5">The AI operating system that evolves</text>
+  <text x="80" y="442" font-family="Georgia, serif" font-style="italic" font-size="32" fill="#F8F5EF" opacity="0.82" letter-spacing="-0.5">with your business — every week.</text>
+
+  <!-- Bottom bar -->
+  <line x1="80" y1="520" x2="1120" y2="520" stroke="#F8F5EF" stroke-opacity="0.16" stroke-width="1"/>
+
+  <!-- Date -->
+  <text x="80" y="568" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#F8F5EF" opacity="0.82">SATURDAY · APRIL 25 · 12PM PACIFIC</text>
+
+  <!-- Price badge -->
+  <rect x="1000" y="538" width="120" height="52" rx="26" fill="#F47C70"/>
+  <text x="1060" y="574" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#1F3D3A" text-anchor="middle">$27</text>
+
+  <!-- Gabriel signature bottom left -->
+  <text x="80" y="608" font-family="Georgia, serif" font-style="italic" font-size="18" fill="#F47C70">— with Gabriel Omat</text>
+</svg>
