@@ -203,6 +203,31 @@
       margin-top: 24px;
       font-weight: 500;
     }
+    .hero .container { max-width: 1440px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-copy { min-width: 0; }
+    .hero-copy .subhead { max-width: none; }
+    .hero-visual {
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      max-width: 720px;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.35));
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 0; }
+      .hero-visual { display: none; }
+    }
 
     /* Buttons */
     .btn {
@@ -249,6 +274,27 @@
     .prose p:last-child { margin-bottom: 0; }
     .prose strong { font-weight: 700; color: var(--ink); }
     .prose em { font-style: italic; }
+    .prose ul.mechanism-list {
+      list-style: none;
+      max-width: 60ch;
+      margin: 0 0 24px;
+      padding: 0;
+    }
+    .prose ul.mechanism-list li {
+      padding: 12px 0 12px 28px;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      font-size: 18px;
+      line-height: 1.55;
+      color: #2C2A27;
+    }
+    .prose ul.mechanism-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 22px;
+      width: 12px; height: 1.5px;
+      background: var(--coral);
+    }
 
     /* Problem / Real Cost */
     .problem .rule, .cost .rule {
@@ -732,20 +778,23 @@
   <!-- Hero -->
   <header class="hero">
     <div class="container">
-      <span class="eyebrow">Live Workshop</span>
-      <h1>What if the system running your business got <em>smarter</em> every week — instead of falling further behind?</h1>
-      <p class="subhead">Introducing The Living Workspace — the only operating system that evolves as fast as your business.</p>
-      <p class="lead-intro">Imagine where your business would be if every week…</p>
-      <ul class="lead">
-        <li>Your content wrote itself — in your voice, not AI-flavored filler</li>
-        <li>Your workspace updated itself the moment you made a decision (not three months later when you finally had time to rebuild it)</li>
-        <li>Your client delivery scaled without you doing the work twice</li>
-        <li>Every ad, every email, every landing page actually launched</li>
-        <li>Nothing fell through the cracks — not the DMs, not the follow-ups, not the renewals</li>
-      </ul>
-      <p class="prose">Inside this 60-minute live workshop, I'll show you exactly what's possible — and exactly how to build it. You'll see The Living Workspace in action, running the real business I'm running right now, live on screen.</p>
-      <a href="https://buy.stripe.com/cNicN4cHx4GA0Bn3073gk00" class="btn" target="_blank" rel="noopener">Reserve My Seat · $27 <span class="arrow">→</span></a>
-      <p class="note">Built for coaches, consultants, and service providers running the whole business themselves.</p>
+      <span class="eyebrow">Live Workshop — Saturday, May 2nd at 12PM Pacific</span>
+      <h1>See The Living Workspace running a real business, <em>live.</em></h1>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="subhead">In 60 minutes, I'll show you the exact Claude setup I use to run AI Coachbox. How one workspace handles my content, my offers, my client delivery, and my follow-ups… and what happens the moment I change something and every downstream piece updates itself.</p>
+          <ul class="lead">
+            <li>Watch the whole system running on my real business, right now</li>
+            <li>See what shifts when I change an offer or a price mid-workshop</li>
+            <li>Leave with the blueprint to build yours this week</li>
+          </ul>
+          <a href="https://buy.stripe.com/cNicN4cHx4GA0Bn3073gk00" class="btn" target="_blank" rel="noopener">Reserve My Seat · $27 <span class="arrow">→</span></a>
+          <p class="note">60 minutes live. For coaches, consultants, and service providers already using AI in their business.</p>
+        </div>
+        <div class="hero-visual">
+          <img src="/images/laptop-mockup.png" alt="The Living Workspace shown on a laptop — a Claude conversation titled Evolve Your Business Brain activating three skills." />
+        </div>
+      </div>
     </div>
   </header>
 
@@ -765,19 +814,27 @@
     </div>
   </section>
 
-  <!-- Real cost -->
+  <!-- What Makes This Different -->
   <section class="cost" style="padding-top: 0;">
     <div class="container-narrow">
       <div class="rule"></div>
-      <span class="eyebrow section-label">The real cost</span>
-      <h2 class="display" style="margin-top: 20px;">Think about everything that's been sitting on your plate for <em>the past 90 days.</em></h2>
+      <span class="eyebrow section-label">The mechanism</span>
+      <h2 class="display" style="margin-top: 20px;">What makes a Living Workspace different from <em>a Custom GPT.</em></h2>
       <div class="prose">
-        <p>The content that didn't go out means people who would have found you didn't. The landing page still in your head means offers that should be selling aren't. The follow-ups you forgot about means leads who were ready to say yes went somewhere else.</p>
-      </div>
-
-      <div class="manifesto">
-        <strong>The fix isn't more tools.</strong>
-        Every week that goes by where these things aren't getting done is costing you clients and costing you money. The longer they sit, the heavier the pile gets. It isn't another app. It isn't a prompt pack or a course about what's possible. It's one system — set up correctly, and built to update itself as your business evolves — that handles the actual work your business needs done every week.
+        <p>Most AI setups get built once and then go stale. You train a Custom GPT on your offer in January. You change your offer in March. Now it's writing copy for a product you don't sell anymore. So you go back in. Retrain it. Update the instructions. Six weeks later you're doing it again.</p>
+        <p><strong>That's a static setup pretending to be a system.</strong></p>
+        <p>The Living Workspace is one Claude workspace built around the current reality of your business. When something shifts, the workspace works from the updated version. You stop re-explaining your business every time you open a chat. You stop fighting AI that's operating from last quarter. You update one thing, and the system carries it forward.</p>
+        <p>Here's what that looks like in practice.</p>
+        <p><strong>I change:</strong> my offer price, my positioning, my audience angle, or my current priority.</p>
+        <p><strong>The workspace updates:</strong></p>
+        <ul class="mechanism-list">
+          <li>The messaging on my landing page</li>
+          <li>The copy in my follow-up sequences</li>
+          <li>The hooks in my next batch of content</li>
+          <li>The language I use in client delivery</li>
+          <li>What's next on my priority list</li>
+        </ul>
+        <p>That's the move most AI setups can't make. That's what "living" actually means.</p>
       </div>
     </div>
   </section>
@@ -797,8 +854,8 @@
 
       <div class="module">
         <div class="num">02</div>
-        <h3>Your Workspace (Itself)</h3>
-        <p>This is the part no one else is teaching. When you change your offer, your pricing, your positioning, your ICP — The Living Workspace updates itself. Your content references the new offer. Your emails use the current price. Your ad copy matches your current angle. You don't go back and re-edit 40 documents. The system propagates the change for you.</p>
+        <h3>Your Daily Pulse</h3>
+        <p>The ad spend you keep meaning to check. The follow-ups you said you'd make last week. The high-impact task you've been dodging for 10 days. The Living Workspace is connected to your real business data (members, revenue, ad performance, retention, conversion) and tracks what you're actually getting done. Every morning at 5 AM it runs a 7-section health check covering your numbers, your funnel, your task patterns, and the 3 things that matter most today. It tells you what you're avoiding and where your focus is drifting. You sit down with coffee already knowing where the business stands and exactly what to do next.</p>
       </div>
 
       <div class="module">
