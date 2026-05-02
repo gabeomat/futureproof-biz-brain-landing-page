@@ -18,7 +18,7 @@
   --ink-muted: #6F6F6F;
   --rule: #C8BFA9;
   --serif: 'Playfair Display', Georgia, serif;
-  --serif-italic: 'Cormorant Garamond', serif;
+  --serif-italic: 'Playfair Display', Georgia, serif;
   --sans: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
 
   background: var(--bg);
@@ -239,10 +239,10 @@
 }
 .lw-root .stack-item:last-child { border-bottom: 1px solid var(--rule); }
 .lw-root .stack-item:hover { background: var(--paper); padding-left: 28px; }
-.lw-root .stack-item .idx { font-family: var(--serif-italic); font-style: italic; font-size: 18px; color: var(--coral); }
+.lw-root .stack-item .idx { font-family: var(--serif-italic); font-style: italic; font-weight: 500; font-size: 18px; color: var(--coral); }
 .lw-root .stack-item .item { font-family: var(--sans); font-weight: 600; font-size: 18px; color: var(--ink); line-height: 1.25; }
 .lw-root .stack-item .item small { display: block; font-weight: 400; font-size: 13px; color: var(--ink-muted); margin-top: 6px; line-height: 1.5; }
-.lw-root .stack-item .val { text-align: right; font-family: var(--serif-italic); font-style: italic; font-size: 18px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.lw-root .stack-item .val { text-align: right; font-family: var(--serif-italic); font-style: italic; font-weight: 500; font-size: 18px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .lw-root .stack-item .arrow { font-size: 18px; color: var(--coral); opacity: 0; transition: all 0.3s; text-align: right; }
 .lw-root .stack-item:hover .arrow { opacity: 1; transform: translateX(4px); }
 

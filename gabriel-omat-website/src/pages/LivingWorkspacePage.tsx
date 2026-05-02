@@ -329,19 +329,19 @@ export default function LivingWorkspacePage() {
         <div className="section-rule"><span className="line" /><span>The Founding-Client Deliverable</span></div>
         <div className="stack-head">
           <h2 className="editorial">WHAT YOU <span className="it">walk away with.</span></h2>
-          <p>Eight private deliverables, valued at $7,691. Available to founding clients at <strong>$1,497</strong> — the lowest price this offer will ever exist.</p>
+          <p>Eight private deliverables, valued at $6,191. Available to founding clients at <strong>$1,497</strong> — the lowest price this offer will ever exist.</p>
         </div>
 
         <div className="stack-list">
           {[
-            { idx: "i", item: "Four private 60-minute 1:1 implementation calls", desc: "Just you and me. Building your workspace in real time.", val: "$2,000" },
-            { idx: "ii", item: "Custom Business Brain build, done with you", desc: "Offers, voice, audience, decisions, metrics — captured and organized.", val: "$1,500" },
-            { idx: "iii", item: "Workspace Command Center artifact", desc: "A clean HTML dashboard so you actually want to open your workspace.", val: "$497" },
-            { idx: "iv", item: "Three custom workflows built around your business", desc: "Real workflows for the work you actually do every week — not templates.", val: "$1,500" },
-            { idx: "v", item: "The Living Workspace Starter System", desc: "Every foundational file, prompt, and template I use. So we're not starting blank.", val: "$497" },
-            { idx: "vi", item: "Chat Sweep Command", desc: "The single command that keeps your workspace alive instead of going stale.", val: "$197" },
-            { idx: "vii", item: "30 days private async implementation support", desc: "Loom feedback. Screenshot review. Real help between calls.", val: "$750" },
-            { idx: "viii", item: "30 more days of Slack support after the build", desc: "Because the real questions show up after you've been living in it.", val: "$750" },
+            { idx: "i", item: "Four private 60-minute 1:1 implementation calls", desc: "Just you and me. Building your custom business brain & operating system.", val: "$2,000" },
+            { idx: "ii", item: "30 days private async implementation support", desc: "Loom feedback. Screenshot review. Real help between calls.", val: "$750" },
+            { idx: "iii", item: "30 more days of Slack support after the build", desc: "Because the real questions show up after you've been living in it.", val: "$750" },
+            { idx: "iv", item: "The Living Workspace Starter System", desc: "Every foundational file, prompt, and template I use. So we're not starting blank.", val: "$497" },
+            { idx: "v", item: "Three custom workflows built around your business", desc: "Real workflows for the work you actually do every week — not templates.", val: "$1,500" },
+            { idx: "vi", item: "Workspace Command Center artifact", desc: "A clean HTML dashboard so you actually want to open your workspace.", val: "$497" },
+            { idx: "vii", item: "Chat Sweep Command", desc: "The single command that keeps your workspace alive instead of going stale.", val: "$197" },
+            { idx: "viii", item: "Experience and expertise to thrive in your living workspace", desc: "Watch it get smarter over time and continue adding AI roles and workflows as needed.", val: "Priceless" },
           ].map((row) => (
             <div className="stack-item" key={row.idx}>
               <span className="idx">{row.idx}</span>
@@ -357,7 +357,7 @@ export default function LivingWorkspacePage() {
 
         <div className="stack-total">
           <div className="lbl">Founding-Client Investment</div>
-          <div className="crossed">$7,691</div>
+          <div className="crossed">$6,191</div>
           <div className="now"><em>$1,497</em></div>
         </div>
       </section>
@@ -389,7 +389,7 @@ export default function LivingWorkspacePage() {
       <div className="story" id="story">
         <div className="story-inner">
           <div className="story-portrait">
-            <div className="frame"><img src="/images/lw-gabriel.jpeg" alt="Gabriel Omat" /></div>
+            <div className="frame"><img src="/images/lw-gabriel-desk.png" alt="Gabriel Omat at his desk" /></div>
             <div className="badge">The Builder</div>
             <div className="meta"><span>Gabriel Omat</span><span>Vol. 02 · 2026</span></div>
           </div>
