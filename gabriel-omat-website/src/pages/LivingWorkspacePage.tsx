@@ -135,10 +135,6 @@ export default function LivingWorkspacePage() {
     <div className="lw-root" ref={rootRef}>
       {/* Countdown */}
       <div className="countdown">
-        <span>
-          <span className="pulse-dot" aria-hidden>●</span>{" "}
-          <span className="pre">Founding Round · 5 spots · 3 remaining</span>
-        </span>
         <div className="timer">
           <span>Skills bonus closes in</span>
           <b>{pad(d)}</b><span>D</span>
