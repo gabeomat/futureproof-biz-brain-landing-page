@@ -4,6 +4,9 @@ import "@/styles/living-workspace.css";
 
 const TARGET_MS = new Date("2026-05-06T23:59:59").getTime();
 const APPLY_URL = "https://living-workspace-application.lovable.app";
+const WAITLIST_MODE = true;
+const NEXT_ROUND_PRICE = "$1,997";
+const TYPICAL_WAIT = "2–4 weeks";
 
 const SKILLS: Array<{ name: string }> = [
   { name: "File Organizer" },
@@ -20,6 +23,13 @@ const SKILLS: Array<{ name: string }> = [
 ];
 
 const ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii"];
+
+const WAITLIST_FAQ_EXTRA: Array<{ q: string; a: string }> = [
+  {
+    q: "How does the waitlist work?",
+    a: "Apply now and you're on the list. New spots typically open every 2–4 weeks. When one does, applicants on the waitlist get notified first.",
+  },
+];
 
 const FAQ: Array<{ q: string; a: string }> = [
   {
@@ -124,25 +134,32 @@ export default function LivingWorkspacePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const rootRef = useReveal();
 
-  // When countdown expires, redirect to /bonus-expired
+  // When countdown expires, redirect to /bonus-expired (skipped in waitlist mode)
   useEffect(() => {
+    if (WAITLIST_MODE) return;
     if (expired) {
       setLocation("/bonus-expired");
     }
   }, [expired, setLocation]);
 
+  const ctaLabel = WAITLIST_MODE ? "Apply for the waitlist" : "Apply for a founding spot";
+  const navCtaLabel = WAITLIST_MODE ? "Join waitlist" : "Apply";
+  const faqList = WAITLIST_MODE ? [...FAQ, ...WAITLIST_FAQ_EXTRA] : FAQ;
+
   return (
     <div className="lw-root" ref={rootRef}>
       {/* Countdown */}
-      <div className="countdown">
-        <div className="timer">
-          <span>Skills bonus closes in</span>
-          <b>{pad(d)}</b><span>D</span>
-          <b>{pad(h)}</b><span>H</span>
-          <b>{pad(m)}</b><span>M</span>
-          <b className="seconds-only">{pad(s)}</b><span className="seconds-only">S</span>
+      {!WAITLIST_MODE && (
+        <div className="countdown">
+          <div className="timer">
+            <span>Skills bonus closes in</span>
+            <b>{pad(d)}</b><span>D</span>
+            <b>{pad(h)}</b><span>H</span>
+            <b>{pad(m)}</b><span>M</span>
+            <b className="seconds-only">{pad(s)}</b><span className="seconds-only">S</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Nav */}
       <nav className="top">
@@ -153,29 +170,29 @@ export default function LivingWorkspacePage() {
           <a href="#weeks">Process</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">Apply <span>→</span></a>
+        <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">{navCtaLabel} <span>→</span></a>
       </nav>
 
       {/* Hero */}
       <div className="hero-shell">
         <div className="hero-card">
           <div className="hero-left">
-            <div className="hero-eyebrow"><span className="line" /><span>Vol. 02 · The Living Workspace · 30-Day Build</span></div>
+            <div className="hero-eyebrow"><span className="line" /><span>Vol. 02 · The Living Workspace · {WAITLIST_MODE ? "Waitlist Open" : "30-Day Build"}</span></div>
             <div>
               <h1 className="hero-title">
                 <span className="stop">Stop carrying</span>
                 <span className="it">your whole business</span>
                 <span className="it smaller">in your head.</span>
               </h1>
-              <p className="hero-deck">In 30 days, we build your Living Workspace inside Claude — a private command center your business can actually run from. Private 1:1 implementation. Five founding spots.</p>
+              <p className="hero-deck">In 30 days, we build your Living Workspace inside Claude — a private command center your business can actually run from. {WAITLIST_MODE ? "Spots are currently full. Apply now to be first to know when a spot opens — typically within 2–4 weeks." : "Private 1:1 implementation. Five founding spots."}</p>
               <div className="hero-actions">
-                <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="btn-coral">Apply for a founding spot <span>→</span></a>
+                <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="btn-coral">{ctaLabel} <span>→</span></a>
                 <a href="#weeks" className="link-secondary">See the build →</a>
               </div>
             </div>
             <div className="hero-bottom">
               <span className="label">The Atelier</span>
-              <span>— 02 / Founding Round</span>
+              <span>— 02 / {WAITLIST_MODE ? "Waitlist" : "Founding Round"}</span>
             </div>
           </div>
           <div className="hero-right">
@@ -193,12 +210,12 @@ export default function LivingWorkspacePage() {
           <span>Claude already knows your business</span>
           <span>Built around you — not a template</span>
           <span>Private 1:1 implementation</span>
-          <span>Five founding spots</span>
+          <span>{WAITLIST_MODE ? "Waitlist open · spots open every 2–4 weeks" : "Five founding spots"}</span>
           <span>One workspace, not seven tabs</span>
           <span>Claude already knows your business</span>
           <span>Built around you — not a template</span>
           <span>Private 1:1 implementation</span>
-          <span>Five founding spots</span>
+          <span>{WAITLIST_MODE ? "Waitlist open · spots open every 2–4 weeks" : "Five founding spots"}</span>
         </div>
       </div>
 
@@ -322,10 +339,14 @@ export default function LivingWorkspacePage() {
 
       {/* Stack / Deliverables */}
       <section id="included">
-        <div className="section-rule"><span className="line" /><span>The Founding-Client Deliverable</span></div>
+        <div className="section-rule"><span className="line" /><span>{WAITLIST_MODE ? "The Deliverable" : "The Founding-Client Deliverable"}</span></div>
         <div className="stack-head">
           <h2 className="editorial">WHAT YOU <span className="it">walk away with.</span></h2>
-          <p>Eight private deliverables, valued at $6,191. Available to founding clients at <strong>$1,497</strong> — the lowest price this offer will ever exist.</p>
+          {WAITLIST_MODE ? (
+            <p>Eight private deliverables, valued at $6,191. The build is <strong>{NEXT_ROUND_PRICE}</strong>. Spots are currently full — apply now to be first to know when one opens.</p>
+          ) : (
+            <p>Eight private deliverables, valued at $6,191. Available to founding clients at <strong>$1,497</strong> — the lowest price this offer will ever exist.</p>
+          )}
         </div>
 
         <div className="stack-list">
@@ -352,13 +373,14 @@ export default function LivingWorkspacePage() {
         </div>
 
         <div className="stack-total">
-          <div className="lbl">Founding-Client Investment</div>
+          <div className="lbl">{WAITLIST_MODE ? "The Investment" : "Founding-Client Investment"}</div>
           <div className="crossed">$6,191</div>
-          <div className="now"><em>$1,497</em></div>
+          <div className="now"><em>{WAITLIST_MODE ? NEXT_ROUND_PRICE : "$1,497"}</em></div>
         </div>
       </section>
 
       {/* Bonus */}
+      {!WAITLIST_MODE && (
       <div className="bonus">
         <div className="bonus-card">
           <div className="bonus-left">
@@ -380,6 +402,7 @@ export default function LivingWorkspacePage() {
           </div>
         </div>
       </div>
+      )}
 
       {/* Story */}
       <div className="story" id="story">
@@ -419,7 +442,7 @@ export default function LivingWorkspacePage() {
         <div className="section-rule"><span className="line" /><span>Questions Worth Asking</span></div>
         <h2 className="editorial">SOME <span className="it">good ones.</span></h2>
         <div className="faq-list">
-          {FAQ.map((item, i) => (
+          {faqList.map((item, i) => (
             <div key={i} className={`faq-item ${openFaq === i ? "open" : ""}`}>
               <button
                 className="faq-q"
@@ -440,18 +463,32 @@ export default function LivingWorkspacePage() {
       <div className="final" id="apply">
         <div className="final-card">
           <div className="final-inner">
-            <div className="eyebrow">— The Founding Round · 5 Spots · $1,497</div>
+            <div className="eyebrow">{WAITLIST_MODE ? `— Waitlist Open · ${NEXT_ROUND_PRICE} · Spots typically open every ${TYPICAL_WAIT}` : "— The Founding Round · 5 Spots · $1,497"}</div>
             <h2>SIX MONTHS FROM NOW. <span className="it">You'll either still be re-explaining</span> — or watching Claude already know.</h2>
-            <p>The math is brutal. The fix is one 30-day build. When the spots are gone, they're gone.</p>
+            <p>{WAITLIST_MODE ? "Spots are full right now. Apply to be first to know when one opens — typically within 2–4 weeks." : "The math is brutal. The fix is one 30-day build. When the spots are gone, they're gone."}</p>
             <div className="final-cta-row">
-              <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="final-cta">Apply for a founding spot <span>→</span></a>
+              <a href={APPLY_URL} target="_blank" rel="noopener noreferrer" className="final-cta">{ctaLabel} <span>→</span></a>
             </div>
             <div className="final-meta">
-              <span>5 founding spots · 3 left</span>
-              <span>·</span>
-              <span>$1,497 (future $3,000)</span>
-              <span>·</span>
-              <span>Skills bonus closes May 6</span>
+              {WAITLIST_MODE ? (
+                <>
+                  <span>Waitlist open</span>
+                  <span>·</span>
+                  <span>First to know when a spot opens</span>
+                  <span>·</span>
+                  <span>Typically every {TYPICAL_WAIT}</span>
+                  <span>·</span>
+                  <span>{NEXT_ROUND_PRICE}</span>
+                </>
+              ) : (
+                <>
+                  <span>5 founding spots · 3 left</span>
+                  <span>·</span>
+                  <span>$1,497 (future $3,000)</span>
+                  <span>·</span>
+                  <span>Skills bonus closes May 6</span>
+                </>
+              )}
             </div>
           </div>
         </div>
