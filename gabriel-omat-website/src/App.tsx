@@ -7,6 +7,7 @@ import LivingWorkspacePage from "@/pages/LivingWorkspacePage";
 import BonusExpiredPage from "@/pages/BonusExpiredPage";
 import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
+import NewsletterSkillPage from "@/pages/NewsletterSkillPage";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/bonus-expired" component={BonusExpiredPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/newsletter-skill" component={NewsletterSkillPage} />
       <Route component={NotFound} />
     </Switch>
   );
