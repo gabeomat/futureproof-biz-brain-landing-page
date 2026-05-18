@@ -4,13 +4,13 @@ export default function FPFooter() {
   return (
     <footer className="on-anchor bg-anchor text-cream rounded-[2rem] md:rounded-[3rem] overflow-hidden mt-6 md:mt-10">
       {/* Tagline + CTA */}
-      <div className="px-8 md:px-16 py-14 md:py-20 grid md:grid-cols-[1.4fr_1fr] gap-10 md:gap-16 items-end border-b border-anchor-soft">
-        <div>
+      <div className="px-6 sm:px-8 md:px-16 py-12 sm:py-14 md:py-20 grid md:grid-cols-[1.4fr_1fr] gap-8 sm:gap-10 md:gap-16 items-end border-b border-anchor-soft">
+        <div className="min-w-0">
           <span className="eyebrow mb-6 text-cream/80">
             <span className="rule-coral" aria-hidden />
             Closing Remarks
           </span>
-          <h3 className="display-sans text-4xl md:text-5xl lg:text-[3.25rem] leading-[0.95] max-w-xl">
+          <h3 className="display-sans text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.02] sm:leading-[0.95] max-w-xl wrap-break-word">
             Stop chatting with AI. Start <em>building</em> your AI brain.
           </h3>
         </div>

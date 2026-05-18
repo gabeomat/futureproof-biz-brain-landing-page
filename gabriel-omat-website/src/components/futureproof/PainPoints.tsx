@@ -17,7 +17,7 @@ const itemVariants = {
 export default function PainPoints() {
   return (
     <motion.div
-      className="p-6 md:p-12 md:w-1/3 text-white flex flex-col justify-center bg-foreground"
+      className="p-6 md:p-12 w-full md:w-1/3 min-w-0 text-white flex flex-col justify-center bg-foreground"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"

@@ -19,7 +19,7 @@ const childVariants = {
 export default function HeroSection() {
   return (
     <motion.div
-      className="on-anchor bg-anchor text-cream px-8 md:px-14 lg:px-20 py-14 md:py-20 md:w-2/3 relative"
+      className="on-anchor bg-anchor text-cream px-6 sm:px-8 md:px-14 lg:px-20 py-12 sm:py-14 md:py-20 w-full md:w-2/3 min-w-0 relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -33,7 +33,7 @@ export default function HeroSection() {
       </motion.span>
 
       <motion.h1
-        className="display-sans text-5xl sm:text-6xl md:text-[5.25rem] lg:text-[6.5rem] leading-[0.9] mb-8"
+        className="display-sans text-[2.5rem] sm:text-6xl md:text-[5.25rem] lg:text-[6.5rem] leading-[0.95] sm:leading-[0.9] mb-8 wrap-break-word"
         variants={childVariants}
       >
         The evolution
