@@ -1,5 +1,5 @@
 [build]
-  command = "vite build --config vite.config.ts"
+  command = "vite build --config vite.config.ts && node scripts/search-era-snapshots.mjs"
   publish = "dist/public"
 
 [[redirects]]
@@ -20,6 +20,76 @@
 [[redirects]]
   from = "/workshop/thanks/"
   to = "/workshop/thanks/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about/"
+  to = "/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/consulting"
+  to = "/consulting/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/consulting/"
+  to = "/consulting/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/futureproof"
+  to = "/futureproof/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/futureproof/"
+  to = "/futureproof/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/living-workspace"
+  to = "/living-workspace/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/living-workspace/"
+  to = "/living-workspace/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsletter-skill"
+  to = "/newsletter-skill/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsletter-skill/"
+  to = "/newsletter-skill/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy/"
+  to = "/privacy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms/"
+  to = "/terms/index.html"
   status = 200
 
 [[redirects]]
