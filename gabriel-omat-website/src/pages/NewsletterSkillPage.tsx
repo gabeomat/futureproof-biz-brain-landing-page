@@ -518,7 +518,7 @@ export default function NewsletterSkillPage() {
           {/* Footer */}
           <div className="ns-footer">
             <div className="ns-footer-text">
-              AI Coachbox — <a href="https://www.gabrielomat.com">gabrielomat.com</a>
+              AI Coachbox — <a href="https://gabrielomat.com">gabrielomat.com</a>
             </div>
             <div className="ns-footer-text">Free Resource · May 2026</div>
           </div>

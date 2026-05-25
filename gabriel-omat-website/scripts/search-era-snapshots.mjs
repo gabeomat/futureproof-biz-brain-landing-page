@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const siteRoot = path.resolve(__dirname, "..");
 const outDir = path.join(siteRoot, "dist", "public");
-const siteUrl = (process.env.PUBLIC_SITE_URL || "https://www.gabrielomat.com").replace(/\/$/, "");
+const rawSiteUrl = (process.env.PUBLIC_SITE_URL || "https://gabrielomat.com").replace(/\/$/, "");
+const siteUrl = rawSiteUrl.replace("https://www.gabrielomat.com", "https://gabrielomat.com");
 const defaultImage = `${siteUrl}/images/g-headshot.jpeg`;
 
 const routes = [
@@ -422,14 +423,9 @@ function sitemapXml() {
   const entries = [
     ...routes,
     {
-      path: "/workshop",
+      path: "/workshop/",
       title: "The Living Workspace Workshop",
       description: "Workshop page for The Living Workspace.",
-    },
-    {
-      path: "/workshop/thanks",
-      title: "Workshop Thanks",
-      description: "Workshop confirmation page.",
     },
   ];
 
@@ -468,12 +464,16 @@ Gabriel Omat is an AI strategist and consultant. He helps online service provide
 - Futureproof - The Evolution Lab: ${siteUrl}/futureproof
 - The Living Workspace: ${siteUrl}/living-workspace
 - AI Consulting for Claude Enterprise: ${siteUrl}/consulting
+- The Living Workspace Workshop: ${siteUrl}/workshop/
+- Newsletter Skill: ${siteUrl}/newsletter-skill
 
 ## Core Offers
 
 - Futureproof is a membership for coaches, consultants, and service providers who want to build AI-powered businesses with a Business Brain, AI workflows, and practical Claude training.
 - The Living Workspace is a private 1:1 implementation to build a Claude-based command center that captures offers, voice, audience, workflows, and business memory.
 - AI consulting helps organizations implement Claude Enterprise through strategy, workflow design, hands-on team training, and adoption advisory.
+- The Living Workspace Workshop is a live training that introduces the Claude-based workspace concept and shows how the operating system evolves with a business.
+- The Newsletter Skill helps creators turn rough source material into an on-brand HTML newsletter.
 
 ## Canonical Concepts
 
