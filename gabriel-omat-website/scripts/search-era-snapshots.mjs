@@ -148,6 +148,10 @@ const routes = [
         heading: "Use case",
         body: "Designed for people who have ideas, notes, or a topic but have been avoiding newsletter production because layout, copy, and polish take too long.",
       },
+      {
+        heading: "What it creates",
+        body: "The workflow turns rough source material into a finished newsletter structure with voice, layout, and HTML polish so the creator can publish without starting from a blank page.",
+      },
     ],
     links: ["/", "/about"],
     jsonLdType: "WebPage",
