@@ -1,0 +1,6 @@
+# Keep the purchaser-only replay page out of search engines.
+# The page stays openable by anyone with the link.
+/workshop/replay
+  X-Robots-Tag: noindex, nofollow
+/workshop/replay/*
+  X-Robots-Tag: noindex, nofollow
