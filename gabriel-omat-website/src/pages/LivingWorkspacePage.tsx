@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import "@/styles/living-workspace.css";
 
-const TARGET_MS = new Date("2026-05-19T23:59:59").getTime();
+const TARGET_MS = new Date("2026-06-02T23:59:59").getTime();
 const APPLY_URL = "https://living-workspace-application.lovable.app";
-const WAITLIST_MODE = true;
+const WAITLIST_MODE = false;
 const NEXT_ROUND_PRICE = "$1,997";
 const TYPICAL_WAIT = "2–4 weeks";
 
@@ -384,13 +384,13 @@ export default function LivingWorkspacePage() {
       <div className="bonus">
         <div className="bonus-card">
           <div className="bonus-left">
-            <div className="eyebrow"><span className="line" /><span>Bonus · Closes Tue, May 19</span></div>
+            <div className="eyebrow"><span className="line" /><span>Bonus · Closes Tuesday, June 2</span></div>
             <h3>11 Custom</h3>
             <h3>Claude Skills.</h3>
             <div className="it">— $500 value.</div>
             <p>The same skills I use in my own business every single week. The ones I'd hand a private client. The ones that took months to build, refine, and prove.</p>
-            <p>Sign up by Tuesday, May 19 and you get all 11 the day you join. They drop straight into your workspace and they're yours to keep.</p>
-            <div className="deadline">After Tue, May 19 · this disappears</div>
+            <p>Sign up by Tuesday, June 2 and you get all 11 the day you join. They drop straight into your workspace and they're yours to keep.</p>
+            <div className="deadline">After Tuesday, June 2 · this disappears</div>
           </div>
           <div className="skills">
             {SKILLS.map((sk, i) => (
@@ -486,7 +486,7 @@ export default function LivingWorkspacePage() {
                   <span>·</span>
                   <span>$1,997 (future $3,000)</span>
                   <span>·</span>
-                  <span>Skills bonus closes Tue, May 19</span>
+                  <span>Skills bonus closes Tuesday, June 2</span>
                 </>
               )}
             </div>

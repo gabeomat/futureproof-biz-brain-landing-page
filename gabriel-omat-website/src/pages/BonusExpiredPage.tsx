@@ -21,7 +21,7 @@ export default function BonusExpiredPage() {
             </h2>
             <p>
               The 11 Custom Claude Skills bonus for The Living Workspace closed on
-              May&nbsp;6, 2026. If you're still interested in joining the founding round,
+              June&nbsp;2, 2026. If you're still interested in joining the founding round,
               email Gabriel directly to see if any spots are still open.
             </p>
             <div className="final-cta-row">
