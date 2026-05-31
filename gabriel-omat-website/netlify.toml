@@ -3,6 +3,16 @@
   publish = "dist/public"
 
 [[redirects]]
+  from = "/social-media-manager"
+  to = "/social-media-manager/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/social-media-manager/"
+  to = "/social-media-manager/index.html"
+  status = 200
+
+[[redirects]]
   from = "/workshop"
   to = "/workshop/index.html"
   status = 200
