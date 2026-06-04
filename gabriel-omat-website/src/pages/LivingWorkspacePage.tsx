@@ -4,7 +4,7 @@ import "@/styles/living-workspace.css";
 
 const TARGET_MS = new Date("2026-06-02T23:59:59").getTime();
 const APPLY_URL = "https://living-workspace-application.lovable.app";
-const WAITLIST_MODE = false;
+const WAITLIST_MODE = true;
 const NEXT_ROUND_PRICE = "$1,997";
 const TYPICAL_WAIT = "2–4 weeks";
 
