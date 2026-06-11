@@ -1,0 +1,159 @@
+/* ============================================================
+   BLOG — editorial article styling
+   Renders Markdown output (.blog-prose) in the site's
+   Dark Anchor Editorial language: Instrument Serif headings,
+   Manrope body, coral/burnt accents on warm cream.
+   ============================================================ */
+
+.blog-prose {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.blog-prose > * + * {
+  margin-top: 1.5rem;
+}
+
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-anchor);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.blog-prose h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-top: 3rem;
+}
+
+.blog-prose h3 {
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  margin-top: 2.5rem;
+}
+
+.blog-prose h4 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.blog-prose p {
+  max-width: 42rem;
+}
+
+.blog-prose a {
+  color: var(--color-burnt);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+
+.blog-prose a:hover {
+  color: var(--color-burnt-deep);
+}
+
+.blog-prose strong {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.blog-prose ul,
+.blog-prose ol {
+  max-width: 42rem;
+  padding-left: 1.5rem;
+}
+
+.blog-prose ul {
+  list-style: none;
+}
+
+.blog-prose ul > li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.blog-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-coral);
+}
+
+.blog-prose ol {
+  list-style: decimal;
+}
+
+.blog-prose li + li {
+  margin-top: 0.5rem;
+}
+
+.blog-prose li::marker {
+  color: var(--color-burnt);
+  font-weight: 700;
+}
+
+.blog-prose blockquote {
+  border-left: 3px solid var(--color-coral);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  margin-left: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  line-height: 1.4;
+  color: var(--color-anchor);
+  max-width: 44rem;
+}
+
+.blog-prose blockquote p {
+  max-width: none;
+}
+
+.blog-prose img {
+  border-radius: var(--radius-lg);
+  width: 100%;
+  height: auto;
+}
+
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-cream-deep);
+  margin: 3rem 0;
+}
+
+.blog-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--color-cream-deep);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+.blog-prose pre {
+  background: var(--color-anchor-deep);
+  color: var(--color-cream);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.blog-prose pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.blog-prose h2 a,
+.blog-prose h3 a {
+  text-decoration: none;
+}

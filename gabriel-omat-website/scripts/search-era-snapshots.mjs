@@ -1,10 +1,19 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { marked } from "marked";
+import {
+  parseFrontmatter,
+  parseList,
+  extractHtmlMeta,
+} from "../src/content/frontmatter.mjs";
+
+marked.use({ gfm: true, breaks: false });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const siteRoot = path.resolve(__dirname, "..");
 const outDir = path.join(siteRoot, "dist", "public");
+const postsDir = path.join(siteRoot, "src", "content", "posts");
 const rawSiteUrl = (process.env.PUBLIC_SITE_URL || "https://gabrielomat.com").replace(/\/$/, "");
 const siteUrl = rawSiteUrl.replace("https://www.gabrielomat.com", "https://gabrielomat.com");
 const defaultImage = `${siteUrl}/images/g-headshot.jpeg`;
@@ -196,6 +205,186 @@ const importantRoutes = routes.filter((route) =>
   ["/", "/about", "/consulting", "/futureproof", "/living-workspace"].includes(route.path),
 );
 
+function formatDisplayDate(iso) {
+  const date = new Date(`${iso}T12:00:00`);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+// Load every blog post from src/content/posts/*.md — the same files the React
+// app reads — so the crawlable snapshots never drift from the live site.
+async function loadPosts() {
+  let entries = [];
+  try {
+    entries = await readdir(postsDir);
+  } catch {
+    return [];
+  }
+
+  const files = entries.filter(
+    (name) =>
+      name.endsWith(".md") &&
+      !name.startsWith("_") &&
+      name.toLowerCase() !== "readme.md",
+  );
+  const posts = [];
+
+  for (const file of files) {
+    const raw = await readFile(path.join(postsDir, file), "utf8");
+    const { data, content } = parseFrontmatter(raw);
+    if (data.draft === "true") continue;
+
+    const slug = (data.slug || file.replace(/\.md$/, "")).toLowerCase();
+    const date = data.date || "1970-01-01";
+
+    posts.push({
+      slug,
+      path: `/blog/${slug}`,
+      layout: "in-site",
+      title: data.title || slug,
+      description: data.description || "",
+      date,
+      displayDate: formatDisplayDate(date),
+      author: data.author || "Gabriel Omat",
+      image: data.image || "",
+      tags: parseList(data.tags),
+      html: marked.parse(content),
+    });
+  }
+
+  return posts.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Load self-contained HTML posts (their own <head>/CSS/JS). These are written
+// to dist verbatim (with SEO tags injected) rather than rendered into the SPA
+// snapshot shell.
+async function loadStandalonePosts() {
+  let entries = [];
+  try {
+    entries = await readdir(postsDir);
+  } catch {
+    return [];
+  }
+
+  const files = entries.filter(
+    (name) =>
+      name.endsWith(".html") &&
+      !name.startsWith("_") &&
+      !/^readme\./i.test(name),
+  );
+  const posts = [];
+
+  for (const file of files) {
+    const raw = await readFile(path.join(postsDir, file), "utf8");
+    if (/<meta\s+name=["']draft["']\s+content=["']true["']/i.test(raw)) continue;
+
+    const meta = extractHtmlMeta(raw);
+    const slug = file.replace(/\.html$/, "").toLowerCase();
+    const date = meta.date || "1970-01-01";
+
+    posts.push({
+      slug,
+      path: `/blog/${slug}`,
+      layout: "standalone",
+      title: meta.title || slug,
+      description: meta.description || "",
+      date,
+      displayDate: formatDisplayDate(date),
+      author: "Gabriel Omat",
+      image: meta.image || "",
+      tags: meta.tags,
+      rawHtml: raw,
+    });
+  }
+
+  return posts.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Build pseudo-routes for the blog index and each in-site post so they flow
+// through the same snapshot / head-tag machinery as the hand-written routes.
+// `listing` is every post (both layouts) so the index links to all of them;
+// only in-site posts get a generated SPA snapshot (standalone posts are their
+// own HTML page, written separately).
+function buildBlogRoutes(listing) {
+  const blogIndex = {
+    path: "/blog",
+    kind: "blog-index",
+    title: "Blog - Gabriel Omat on AI-Powered Business",
+    description:
+      "Practical writing from Gabriel Omat on building AI-powered businesses: Business Brains, Claude workflows, AI-ready content, and getting found in the age of AI search.",
+    h1: "Notes on building an AI-powered business",
+    posts: listing,
+    links: ["/", "/futureproof", "/consulting"],
+  };
+
+  const postRoutes = listing
+    .filter((post) => post.layout === "in-site")
+    .map((post) => ({
+      path: post.path,
+      kind: "blog-post",
+      title: `${post.title} - Gabriel Omat`,
+      description: post.description,
+      h1: post.title,
+      image: post.image || undefined,
+      post,
+      links: ["/blog", "/futureproof", "/consulting"],
+    }));
+
+  return [blogIndex, ...postRoutes];
+}
+
+// Inject canonical, Open Graph, Twitter, and BlogPosting JSON-LD into a
+// standalone post's <head> at build time, so the author's HTML file stays clean
+// but the served page is fully SEO- and agent-discoverable.
+function enrichStandaloneHead(post) {
+  const canonical = absoluteUrl(post.path);
+  const image = post.image
+    ? post.image.startsWith("http")
+      ? post.image
+      : `${siteUrl}${post.image}`
+    : defaultImage;
+
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    url: canonical,
+    mainEntityOfPage: canonical,
+    datePublished: post.date,
+    dateModified: post.date,
+    image,
+    author: { "@type": "Person", name: post.author, url: siteUrl },
+    publisher: { "@type": "Organization", name: "AI Coachbox", url: siteUrl },
+    ...(post.tags.length ? { keywords: post.tags.join(", ") } : {}),
+    isPartOf: { "@type": "Blog", "@id": `${siteUrl}/blog#blog` },
+  };
+
+  const head = `
+    <link rel="canonical" href="${canonical}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Gabriel Omat" />
+    <meta property="og:title" content="${escapeHtml(post.title)}" />
+    <meta property="og:description" content="${escapeHtml(post.description)}" />
+    <meta property="og:url" content="${canonical}" />
+    <meta property="og:image" content="${image}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(post.title)}" />
+    <meta name="twitter:description" content="${escapeHtml(post.description)}" />
+    <meta name="twitter:image" content="${image}" />
+    <script type="application/ld+json">${JSON.stringify(ld).replaceAll("</script", "<\\/script")}</script>
+  </head>`;
+
+  if (post.rawHtml.includes("</head>")) {
+    return post.rawHtml.replace("</head>", head);
+  }
+  return post.rawHtml;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -209,13 +398,87 @@ function absoluteUrl(routePath) {
   return `${siteUrl}${routePath === "/" ? "/" : routePath}`;
 }
 
-function snapshotHtml(route) {
-  const linkItems = route.links
+const NAV_LABELS = {
+  "/": "Gabriel Omat",
+  "/about": "About",
+  "/blog": "Blog",
+  "/futureproof": "Futureproof",
+  "/living-workspace": "Living Workspace",
+  "/consulting": "Consulting",
+};
+
+const snapshotNav = `
+      <nav aria-label="Primary">
+        <a href="/">Gabriel Omat</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/futureproof">Futureproof</a>
+        <a href="/living-workspace">Living Workspace</a>
+        <a href="/consulting">Consulting</a>
+      </nav>`;
+
+function relatedLinks(route) {
+  return route.links
     .map((href) => {
       const linked = routes.find((item) => item.path === href);
-      return `<li><a href="${href}">${escapeHtml(linked?.h1 || href)}</a></li>`;
+      const label = linked?.h1 || NAV_LABELS[href] || href;
+      return `<li><a href="${href}">${escapeHtml(label)}</a></li>`;
     })
     .join("\n");
+}
+
+function snapshotHtml(route) {
+  if (route.kind === "blog-index") {
+    const items = route.posts
+      .map(
+        (post) => `
+        <article>
+          <h2><a href="${post.path}">${escapeHtml(post.title)}</a></h2>
+          <p><time datetime="${post.date}">${escapeHtml(post.displayDate)}</time></p>
+          <p>${escapeHtml(post.description)}</p>
+        </article>`,
+      )
+      .join("\n");
+
+    return `
+    <main class="search-era-snapshot" data-ai-crawl-snapshot="true">
+      ${snapshotNav}
+      <header>
+        <p class="snapshot-kicker">Blog</p>
+        <h1>${escapeHtml(route.h1)}</h1>
+        <p>${escapeHtml(route.description)}</p>
+      </header>
+      ${
+        route.posts.length
+          ? items
+          : "<p>New writing is on the way. Check back soon.</p>"
+      }
+    </main>`;
+  }
+
+  if (route.kind === "blog-post") {
+    const post = route.post;
+    const meta = [post.displayDate, `By ${post.author}`].join(" · ");
+    const tags = post.tags.length
+      ? `<p>Topics: ${post.tags.map((tag) => escapeHtml(tag)).join(", ")}</p>`
+      : "";
+
+    return `
+    <main class="search-era-snapshot" data-ai-crawl-snapshot="true">
+      ${snapshotNav}
+      <article>
+        <p class="snapshot-kicker">${escapeHtml(meta)}</p>
+        <h1>${escapeHtml(post.title)}</h1>
+        <p>${escapeHtml(post.description)}</p>
+        ${tags}
+        ${post.html}
+        <section>
+          <h2>Related pages</h2>
+          <ul>${relatedLinks(route)}</ul>
+        </section>
+      </article>
+    </main>`;
+  }
 
   const sections = route.sections
     .map(
@@ -229,13 +492,7 @@ function snapshotHtml(route) {
 
   return `
     <main class="search-era-snapshot" data-ai-crawl-snapshot="true">
-      <nav aria-label="Primary">
-        <a href="/">Gabriel Omat</a>
-        <a href="/about">About</a>
-        <a href="/futureproof">Futureproof</a>
-        <a href="/living-workspace">Living Workspace</a>
-        <a href="/consulting">Consulting</a>
-      </nav>
+      ${snapshotNav}
       <article>
         <p class="snapshot-kicker">AI-search readable page summary</p>
         <h1>${escapeHtml(route.h1)}</h1>
@@ -243,7 +500,7 @@ function snapshotHtml(route) {
         ${sections}
         <section>
           <h2>Related pages</h2>
-          <ul>${linkItems}</ul>
+          <ul>${relatedLinks(route)}</ul>
         </section>
       </article>
     </main>`;
@@ -301,7 +558,47 @@ function schemaFor(route) {
     },
   ];
 
-  if (route.jsonLdType === "Person") {
+  if (route.kind === "blog-index") {
+    graph.push({
+      "@type": "Blog",
+      "@id": `${absoluteUrl(route.path)}#blog`,
+      url: absoluteUrl(route.path),
+      name: route.title,
+      description: route.description,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      author: { "@id": `${siteUrl}/#person` },
+      blogPost: route.posts.map((post) => ({
+        "@type": "BlogPosting",
+        "@id": `${absoluteUrl(post.path)}#blogposting`,
+        headline: post.title,
+        url: absoluteUrl(post.path),
+        datePublished: post.date,
+        description: post.description,
+      })),
+    });
+    graph.push({ "@type": "WebPage", ...base, mainEntity: { "@id": `${absoluteUrl(route.path)}#blog` } });
+  } else if (route.kind === "blog-post") {
+    const post = route.post;
+    graph.push({
+      "@type": "BlogPosting",
+      "@id": `${absoluteUrl(route.path)}#blogposting`,
+      headline: post.title,
+      description: post.description,
+      url: absoluteUrl(route.path),
+      mainEntityOfPage: absoluteUrl(route.path),
+      datePublished: post.date,
+      dateModified: post.date,
+      image: post.image
+        ? post.image.startsWith("http")
+          ? post.image
+          : `${siteUrl}${post.image}`
+        : defaultImage,
+      author: { "@id": `${siteUrl}/#person` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      ...(post.tags.length ? { keywords: post.tags.join(", ") } : {}),
+      isPartOf: { "@id": `${siteUrl}/blog#blog` },
+    });
+  } else if (route.jsonLdType === "Person") {
     graph.push({
       "@type": "ProfilePage",
       ...base,
@@ -343,12 +640,13 @@ function schemaFor(route) {
 function headTags(route) {
   const canonical = absoluteUrl(route.path);
   const image = route.image || defaultImage;
+  const ogType = route.kind === "blog-post" ? "article" : "website";
 
   return `
     <title>${escapeHtml(route.title)}</title>
     <meta name="description" content="${escapeHtml(route.description)}" />
     <link rel="canonical" href="${canonical}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="${ogType}" />
     <meta property="og:site_name" content="Gabriel Omat" />
     <meta property="og:title" content="${escapeHtml(route.title)}" />
     <meta property="og:description" content="${escapeHtml(route.description)}" />
@@ -423,7 +721,8 @@ async function writeRoute(route, html) {
   await writeFile(path.join(routeDir, "index.html"), html);
 }
 
-function sitemapXml() {
+function sitemapXml(blogListing) {
+  const blogIndexPath = "/blog";
   const entries = [
     ...routes,
     {
@@ -431,16 +730,38 @@ function sitemapXml() {
       title: "The Living Workspace Workshop",
       description: "Workshop page for The Living Workspace.",
     },
+    { path: blogIndexPath },
+    ...blogListing.map((post) => ({
+      path: post.path,
+      kind: "blog-post",
+      lastmod: post.date,
+    })),
   ];
+
+  function changefreq(route) {
+    if (importantRoutes.some((item) => item.path === route.path)) return "weekly";
+    if (route.path === blogIndexPath) return "weekly";
+    return "monthly";
+  }
+
+  function priority(route) {
+    if (route.path === "/") return "1.0";
+    if (importantRoutes.some((item) => item.path === route.path)) return "0.8";
+    if (route.path === blogIndexPath) return "0.7";
+    if (route.kind === "blog-post") return "0.6";
+    return "0.4";
+  }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries
   .map(
     (route) => `  <url>
-    <loc>${absoluteUrl(route.path)}</loc>
-    <changefreq>${importantRoutes.some((item) => item.path === route.path) ? "weekly" : "monthly"}</changefreq>
-    <priority>${route.path === "/" ? "1.0" : importantRoutes.some((item) => item.path === route.path) ? "0.8" : "0.4"}</priority>
+    <loc>${absoluteUrl(route.path)}</loc>${
+      route.lastmod ? `\n    <lastmod>${route.lastmod}</lastmod>` : ""
+    }
+    <changefreq>${changefreq(route)}</changefreq>
+    <priority>${priority(route)}</priority>
   </url>`,
   )
   .join("\n")}
@@ -456,7 +777,24 @@ Sitemap: ${siteUrl}/sitemap.xml
 `;
 }
 
-function llmsTxt() {
+function llmsTxt(posts) {
+  const blogSection = posts.length
+    ? `
+
+## Blog
+
+Gabriel Omat writes about building AI-powered businesses: Business Brains, Claude workflows, AI-ready content, and getting found as search shifts toward AI agents. Blog index: ${siteUrl}/blog
+
+${posts
+  .map(
+    (post) =>
+      `- ${post.title} (${post.date}): ${siteUrl}${post.path}${
+        post.description ? `\n  ${post.description}` : ""
+      }`,
+  )
+  .join("\n")}`
+    : "";
+
   return `# Gabriel Omat
 
 Gabriel Omat is an AI strategist and consultant. He helps online service providers build AI-powered businesses and helps organizations close the AI skill gap using Claude Enterprise.
@@ -465,6 +803,7 @@ Gabriel Omat is an AI strategist and consultant. He helps online service provide
 
 - Home: ${siteUrl}/
 - About Gabriel Omat: ${siteUrl}/about
+- Blog: ${siteUrl}/blog
 - Futureproof - The Evolution Lab: ${siteUrl}/futureproof
 - The Living Workspace: ${siteUrl}/living-workspace
 - AI Consulting for Claude Enterprise: ${siteUrl}/consulting
@@ -484,7 +823,7 @@ Gabriel Omat is an AI strategist and consultant. He helps online service provide
 - AI Business Brain: a working business memory that knows offers, audience, voice, metrics, and strategy.
 - AI Dream Team: a set of AI-powered workflows or assistants that help with content, strategy, operations, research, and execution.
 - Living Workspace: a Claude command center that evolves as the business changes instead of becoming stale.
-- Five layers of an AI-powered business: AI engine, context, memory, execution and workflows, and automation.
+- Five layers of an AI-powered business: AI engine, context, memory, execution and workflows, and automation.${blogSection}
 
 ## Contact
 
@@ -492,7 +831,12 @@ Email: aicoachbox@gabrielomat.com
 `;
 }
 
-function redirectsTxt() {
+function redirectsTxt(blogListing) {
+  const blogPaths = ["/blog", ...blogListing.map((post) => post.path)];
+  const blogRedirects = blogPaths
+    .map((p) => `${p} ${p}/index.html 200\n${p}/ ${p}/index.html 200`)
+    .join("\n");
+
   return `# Generated by scripts/search-era-snapshots.mjs.
 /workshop /workshop/index.html 200
 /workshop/ /workshop/index.html 200
@@ -512,6 +856,7 @@ function redirectsTxt() {
 /privacy/ /privacy/index.html 200
 /terms /terms/index.html 200
 /terms/ /terms/index.html 200
+${blogRedirects}
 /* /index.html 200
 `;
 }
@@ -519,16 +864,33 @@ function redirectsTxt() {
 async function main() {
   const template = await readFile(path.join(outDir, "index.html"), "utf8");
 
-  for (const route of routes) {
+  const markdownPosts = await loadPosts();
+  const standalonePosts = await loadStandalonePosts();
+  const blogListing = [...markdownPosts, ...standalonePosts].sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
+
+  // Index + in-site post snapshots flow through the SPA template.
+  const blogRoutes = buildBlogRoutes(blogListing);
+  for (const route of [...routes, ...blogRoutes]) {
     await writeRoute(route, injectRoute(template, route));
   }
 
-  await writeFile(path.join(outDir, "robots.txt"), robotsTxt());
-  await writeFile(path.join(outDir, "sitemap.xml"), sitemapXml());
-  await writeFile(path.join(outDir, "llms.txt"), llmsTxt());
-  await writeFile(path.join(outDir, "_redirects"), redirectsTxt());
+  // Standalone posts are their own full HTML document — write them verbatim
+  // (with SEO tags injected into <head>).
+  for (const post of standalonePosts) {
+    await writeRoute(post, enrichStandaloneHead(post));
+  }
 
-  console.log(`Search-era snapshots generated for ${routes.length} routes.`);
+  await writeFile(path.join(outDir, "robots.txt"), robotsTxt());
+  await writeFile(path.join(outDir, "sitemap.xml"), sitemapXml(blogListing));
+  await writeFile(path.join(outDir, "llms.txt"), llmsTxt(blogListing));
+  await writeFile(path.join(outDir, "_redirects"), redirectsTxt(blogListing));
+
+  console.log(
+    `Search-era snapshots generated for ${routes.length + blogRoutes.length} routes ` +
+      `(${markdownPosts.length} Markdown + ${standalonePosts.length} standalone posts).`,
+  );
 }
 
 main().catch((error) => {

@@ -4,6 +4,8 @@ import AboutPage from "@/pages/AboutPage";
 import ConsultingPage from "@/pages/ConsultingPage";
 import FutureproofPage from "@/pages/FutureproofPage";
 import LivingWorkspacePage from "@/pages/LivingWorkspacePage";
+import BlogIndexPage from "@/pages/BlogIndexPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 import BonusExpiredPage from "@/pages/BonusExpiredPage";
 import TermsPage from "@/pages/TermsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
@@ -18,6 +20,8 @@ export default function App() {
       <Route path="/consulting" component={ConsultingPage} />
       <Route path="/futureproof" component={FutureproofPage} />
       <Route path="/living-workspace" component={LivingWorkspacePage} />
+      <Route path="/blog" component={BlogIndexPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
       <Route path="/bonus-expired" component={BonusExpiredPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />
