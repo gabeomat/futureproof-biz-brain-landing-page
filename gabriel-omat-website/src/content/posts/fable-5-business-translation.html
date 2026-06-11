@@ -64,7 +64,7 @@
   .hero-mid { padding: 70px 0 50px; }
   .hero h1 { font-size: clamp(46px, 8.4vw, 104px); color: var(--bone); max-width: 18ch; }
   .hero h1 .ital { color: var(--persimmon); font-size: 0.96em; }
-  .hero-intro { max-width: 560px; margin-top: 44px; font-size: 17px; color: rgba(242,235,220,0.85); }
+  .hero-intro { max-width: 560px; margin-top: 44px; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.75; color: rgba(242,235,220,0.92); }
   .hero-intro p + p { margin-top: 14px; }
   .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
   .tagline { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 17px; color: rgba(242,235,220,0.65); }
@@ -78,12 +78,12 @@
   .dark { background: var(--forest); color: var(--bone); }
   .dark .label { color: rgba(242,235,220,0.75); }
   .dark h2 .ital { color: var(--persimmon); }
-  .dark p { color: rgba(242,235,220,0.85); }
+  .dark p { color: rgba(242,235,220,0.92); font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; line-height: 1.75; max-width: 68ch; }
   .light { background: var(--bone); color: var(--ink); }
   .light .label { color: rgba(15,30,27,0.6); }
   .light h2 { color: var(--ink); }
   .light h2 .ital { color: var(--persimmon); }
-  .light p { color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; }
+  .light p { color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; line-height: 1.75; max-width: 68ch; }
   .light .body-sans { font-family: 'Work Sans', sans-serif; font-size: 16px; }
   .prose p + p { margin-top: 18px; }
   .prose { max-width: 680px; }
@@ -100,7 +100,7 @@
   .stat + .stat { border-left: 1px solid var(--hairline-dark); }
   .stat .label { display: block; margin-bottom: 14px; opacity: 0.65; }
   .stat .big { font-family: 'Anton', sans-serif; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; color: var(--bone); }
-  .stat .sub { margin-top: 12px; font-size: 14px; color: rgba(242,235,220,0.7); }
+  .stat .sub { margin-top: 12px; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.75; color: rgba(242,235,220,0.92); }
   @media (max-width: 760px) {
     .stats { grid-template-columns: 1fr; }
     .stat + .stat { border-left: 0; border-top: 1px solid var(--hairline-dark); }
@@ -108,7 +108,7 @@
 
   /* ---------- ASK LIST (hero examples) ---------- */
   .asks { margin-top: 48px; display: grid; gap: 0; border-top: 1px solid var(--hairline-light); }
-  .asks .ask { padding: 26px 0; border-bottom: 1px solid var(--hairline-light); font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: clamp(18px, 2.4vw, 23px); line-height: 1.5; color: var(--ink); }
+  .asks .ask { padding: 26px 0; border-bottom: 1px solid var(--hairline-light); font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(17px, 1.6vw, 19px); line-height: 1.75; color: var(--ink); }
   .asks .ask .n { font-family: 'Work Sans', sans-serif; font-style: normal; font-weight: 300; font-size: 12px; letter-spacing: 0.12em; color: var(--persimmon); margin-right: 18px; vertical-align: middle; }
 
   /* ---------- EFFORT TABS ---------- */
@@ -123,7 +123,7 @@
   .tab-panel { display: none; padding: 44px 0 0; }
   .tab-panel.active { display: block; animation: fadein 0.35s ease; }
   @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  .tab-panel .use-when { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 22px; color: var(--persimmon); margin-bottom: 26px; }
+  .tab-panel .use-when { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.4; color: var(--persimmon); margin-bottom: 26px; }
   .tab-panel ul { list-style: none; }
   .tab-panel li { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; padding: 13px 0; border-bottom: 1px solid var(--hairline-light); }
   .tab-panel li::before { content: "—"; color: var(--persimmon); margin-right: 14px; }
@@ -132,11 +132,11 @@
   /* ---------- TWO COLUMN SPLIT ---------- */
   .split { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; margin-top: 56px; }
   .split .divider { background: var(--hairline-dark); }
-  .split h3 { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: 24px; margin-bottom: 26px; }
+  .split h3 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.3; margin-bottom: 26px; }
   .split .col-a h3 { color: var(--persimmon); }
   .split .col-b h3 { color: var(--bone); }
   .split ul { list-style: none; }
-  .split li { padding: 12px 0; border-bottom: 1px solid var(--hairline-dark); font-size: 15.5px; color: rgba(242,235,220,0.85); }
+  .split li { padding: 12px 0; border-bottom: 1px solid var(--hairline-dark); font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; color: rgba(242,235,220,0.92); }
   @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .split .divider { display: none; } }
 
   /* ---------- ACCORDION (use cases + prompts) ---------- */
@@ -147,15 +147,15 @@
     display: flex; align-items: baseline; gap: 24px; padding: 30px 0; color: inherit;
   }
   .acc-head .num { font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 0.12em; color: var(--persimmon); flex-shrink: 0; }
-  .acc-head .ttl { font-family: 'Anton', sans-serif; font-size: clamp(19px, 2.6vw, 26px); line-height: 1.25; flex: 1; }
+  .acc-head .ttl { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: clamp(20px, 1.6vw, 22px); line-height: 1.3; flex: 1; }
   .acc-head .toggle { font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 22px; color: rgba(242,235,220,0.55); flex-shrink: 0; transition: transform 0.25s ease; }
   .acc-item.open .acc-head .toggle { transform: rotate(45deg); color: var(--persimmon); }
   .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .acc-body-inner { padding: 0 0 36px 0; max-width: 660px; }
-  .acc-body-inner p { font-size: 16px; color: rgba(242,235,220,0.85); }
+  .acc-body-inner p { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.75; color: rgba(242,235,220,0.92); }
   .acc-body-inner p + p { margin-top: 14px; }
   .acc-body-inner ul { list-style: none; margin-top: 14px; }
-  .acc-body-inner li { padding: 8px 0; font-size: 15.5px; color: rgba(242,235,220,0.8); border-bottom: 1px solid rgba(242,235,220,0.12); }
+  .acc-body-inner li { padding: 8px 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; color: rgba(242,235,220,0.92); border-bottom: 1px solid rgba(242,235,220,0.12); }
   .acc-body-inner li::before { content: "—"; margin-right: 12px; color: rgba(242,235,220,0.45); }
   .dark .acc-head .ttl { color: var(--bone); }
 
@@ -169,8 +169,8 @@
 
   /* ---------- PROMPT CARDS ---------- */
   .prompt-quote {
-    font-family: 'Playfair Display', Georgia, serif; font-style: italic;
-    font-size: clamp(17px, 2.2vw, 21px); line-height: 1.6; color: var(--bone);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: clamp(17px, 2.2vw, 21px); line-height: 1.75; color: var(--bone);
     border-left: 1px solid var(--persimmon); padding: 6px 0 6px 28px; margin-bottom: 22px;
   }
   .copy-btn {
@@ -180,12 +180,12 @@
   }
   .copy-btn:hover { opacity: 0.88; }
   .copy-btn.copied { background: transparent; border: 1px solid var(--hairline-dark); color: rgba(242,235,220,0.7); }
-  .prompt-why { margin-top: 20px; font-size: 14.5px; color: rgba(242,235,220,0.65); max-width: 580px; }
+  .prompt-why { margin-top: 20px; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.75; color: rgba(242,235,220,0.92); max-width: 580px; }
 
   /* ---------- FINE PRINT GRID ---------- */
   .fine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 56px; }
-  .fine-grid .cell h3 { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: 23px; color: var(--persimmon); margin-bottom: 18px; }
-  .fine-grid .cell p { font-size: 16px; }
+  .fine-grid .cell h3 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.3; color: var(--persimmon); margin-bottom: 18px; }
+  .fine-grid .cell p { font-size: 17.5px; }
   .fine-grid .cell p + p { margin-top: 12px; }
   @media (max-width: 760px) { .fine-grid { grid-template-columns: 1fr; gap: 40px; } }
 
@@ -264,7 +264,6 @@
     </div>
   </div>
   <div class="hero-bottom">
-    <span class="tagline">Built in reality, not theory.</span>
     <span class="label scroll-hint">Scroll &darr;</span>
   </div>
 </header>
