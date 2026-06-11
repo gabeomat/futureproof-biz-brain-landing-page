@@ -1,12 +1,89 @@
+import type { ReactNode } from "react";
 import { Link } from "wouter";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getAllPosts } from "@/content/posts";
+import { getAllPosts, type BlogPost } from "@/content/posts";
 import { useSeo } from "@/hooks/useSeo";
-import "@/styles/blog.css";
+
+// Standalone (.html) posts are their own full page — use a real anchor so the
+// browser does a full navigation. In-site (Markdown) posts use the SPA router.
+function CardLink({
+  post,
+  className,
+  children,
+}: {
+  post: BlogPost;
+  className?: string;
+  children: ReactNode;
+}) {
+  if (post.layout === "standalone") {
+    return (
+      <a href={post.href} className={className}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={post.href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
+// 16:9 featured image, or a branded placeholder when a post has no image yet.
+function Thumb({ post }: { post: BlogPost }) {
+  if (post.image) {
+    return (
+      <img
+        src={post.image}
+        alt={post.title}
+        loading="lazy"
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+    );
+  }
+  return (
+    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-anchor to-anchor-deep">
+      <span className="font-serif italic text-2xl text-cream/40">
+        Gabriel Omat
+      </span>
+    </div>
+  );
+}
+
+function MetaRow({ post }: { post: BlogPost }) {
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-soft/70">
+      <time dateTime={post.date}>{post.displayDate}</time>
+      <span aria-hidden>·</span>
+      <span>{post.readingMinutes} min read</span>
+      {post.layout === "standalone" && (
+        <>
+          <span aria-hidden>·</span>
+          <span className="text-burnt">Interactive</span>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ReadMore() {
+  return (
+    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-burnt">
+      Read
+      <span
+        aria-hidden
+        className="transition-transform group-hover:translate-x-1"
+      >
+        →
+      </span>
+    </span>
+  );
+}
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();
+  const [featured, ...rest] = posts;
 
   useSeo({
     title: "Blog — AI Systems for Service Businesses",
@@ -38,60 +115,57 @@ export default function BlogIndexPage() {
             New writing is on the way. Check back soon.
           </p>
         ) : (
-          <ul className="grid gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-3 rounded-[1.25rem] overflow-hidden">
-            {posts.map((post) => {
-              const cardInner = (
-                <>
-                  <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-soft/70">
-                    <time dateTime={post.date}>{post.displayDate}</time>
-                    <span aria-hidden>·</span>
-                    <span>{post.readingMinutes} min read</span>
-                    {post.layout === "standalone" && (
-                      <>
-                        <span aria-hidden>·</span>
-                        <span className="text-burnt">Interactive</span>
-                      </>
-                    )}
-                  </div>
-
-                  <h2 className="mt-4 font-serif text-2xl md:text-[1.7rem] leading-tight text-anchor group-hover:text-burnt transition-colors">
-                    {post.title}
+          <>
+            {/* Featured (newest) post */}
+            <CardLink
+              post={featured}
+              className="group block overflow-hidden rounded-[1.5rem] border border-ink/10 bg-cream-soft transition-colors hover:border-burnt/40"
+            >
+              <div className="grid md:grid-cols-2">
+                <div className="order-1 md:order-2 aspect-[16/9] md:aspect-auto overflow-hidden bg-cream-deep">
+                  <Thumb post={featured} />
+                </div>
+                <div className="order-2 md:order-1 flex flex-col p-8 md:p-10 lg:p-12">
+                  <MetaRow post={featured} />
+                  <h2 className="mt-4 font-serif text-3xl md:text-4xl leading-[1.05] text-anchor group-hover:text-burnt transition-colors">
+                    {featured.title}
                   </h2>
-
-                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft line-clamp-4">
-                    {post.description}
+                  <p className="mt-4 text-base md:text-lg leading-relaxed text-ink-soft">
+                    {featured.description}
                   </p>
+                  <ReadMore />
+                </div>
+              </div>
+            </CardLink>
 
-                  <span className="mt-auto pt-6 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-burnt">
-                    Read
-                    <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </span>
-                </>
-              );
-
-              const cardClass =
-                "group flex h-full flex-col p-7 md:p-8 transition-colors hover:bg-cream-soft";
-
-              return (
-                <li key={post.slug} className="bg-cream">
-                  {post.layout === "standalone" ? (
-                    // Standalone posts are their own full HTML page — use a real
-                    // anchor so the browser does a full navigation to the static
-                    // file rather than client-side routing into the SPA.
-                    <a href={post.href} className={cardClass}>
-                      {cardInner}
-                    </a>
-                  ) : (
-                    <Link href={post.href} className={cardClass}>
-                      {cardInner}
-                    </Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+            {/* Remaining posts */}
+            {rest.length > 0 && (
+              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {rest.map((post) => (
+                  <li key={post.slug}>
+                    <CardLink
+                      post={post}
+                      className="group flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-ink/10 bg-cream-soft transition-colors hover:border-burnt/40"
+                    >
+                      <div className="aspect-[16/9] overflow-hidden bg-cream-deep">
+                        <Thumb post={post} />
+                      </div>
+                      <div className="flex flex-1 flex-col p-6 md:p-7">
+                        <MetaRow post={post} />
+                        <h2 className="mt-3 font-serif text-xl md:text-2xl leading-tight text-anchor group-hover:text-burnt transition-colors">
+                          {post.title}
+                        </h2>
+                        <p className="mt-2 text-[15px] leading-relaxed text-ink-soft line-clamp-3">
+                          {post.description}
+                        </p>
+                        <ReadMore />
+                      </div>
+                    </CardLink>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
 
         <Footer />
