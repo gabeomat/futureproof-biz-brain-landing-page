@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Living Workspace — Workshop Replay & Resources</title>
-  <meta name="description" content="Your workshop replay, the Living Workspace Blueprint, and your starter prompt — plus the two ways to keep building.">
+  <meta name="description" content="Your workshop replay, the Living Workspace Blueprint, and the two ways to keep building.">
 
   <!-- Keep this page out of search. Anyone with the link can still open it. -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
@@ -155,7 +155,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
       gap: 40px;
-      align-items: start;
+      align-items: center;
     }
     /* Loom embed — responsive 16:9 */
     .video-wrap {
@@ -442,16 +442,66 @@
     }
     .path-card.featured .price-note { color: rgba(248, 245, 239, 0.7); }
     .bonus-banner {
-      background: rgba(244, 124, 112, 0.14);
-      border: 1px solid rgba(244, 124, 112, 0.35);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      line-height: 1.45;
-      color: rgba(248, 245, 239, 0.95);
+      background: rgba(244, 124, 112, 0.16);
+      border: 1.5px solid rgba(244, 124, 112, 0.5);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(244, 124, 112, 0.18);
     }
-    .bonus-banner strong { color: var(--coral); font-family: 'Manrope', sans-serif; font-weight: 700; }
+    .bonus-head {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 10px;
+    }
+    .bonus-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(248, 245, 239, 0.96);
+    }
+    .bonus-text strong { color: var(--cream); font-family: 'Manrope', sans-serif; font-weight: 700; }
+    .bonus-value {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      color: var(--coral);
+      white-space: nowrap;
+    }
+    .bonus-countdown {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .cd-unit {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(248, 245, 239, 0.07);
+      border: 1px solid rgba(244, 124, 112, 0.3);
+      border-radius: 10px;
+      padding: 9px 4px;
+    }
+    .cd-num {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--cream);
+      font-variant-numeric: tabular-nums;
+    }
+    .cd-lbl {
+      font-family: 'Manrope', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248, 245, 239, 0.58);
+      margin-top: 6px;
+    }
+    .bonus-banner.expired { opacity: 0.85; }
 
     /* ===== Closing ===== */
     .closing { background: var(--anchor); color: var(--cream); text-align: center; }
@@ -510,14 +560,14 @@
     <div class="container-wide">
       <span class="eyebrow">The Living Workspace · Workshop Replay</span>
       <h1>Your replay — plus everything you need to <em>start building.</em></h1>
-      <p class="subhead">Watch the full session, download the blueprint, and grab the starter prompt. Everything from the workshop, in one place.</p>
+      <p class="subhead">Watch the full session and download the blueprint. Everything from the workshop, in one place.</p>
 
       <div class="replay-grid">
         <!-- Loom replay -->
         <div>
           <div class="video-wrap">
             <iframe
-              src="https://www.loom.com/embed/d6e9bb3a2be6467da2e16dd011ac1cf2"
+              src="https://www.loom.com/embed/6491bdfd8d59449fbe64f86eb1fd75a8?hideEmbedTopBar=true&hide_owner=true&hide_share=true&hide_title=true"
               title="The Living Workspace — Workshop Replay"
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture"
@@ -528,7 +578,7 @@
         <!-- Resources -->
         <aside class="resources">
           <h2>Your Resources</h2>
-          <p class="res-intro">The two things that get you building today.</p>
+          <p class="res-intro">The blueprint that gets you building today.</p>
 
           <div class="res-item">
             <div class="res-kicker">Download</div>
@@ -538,59 +588,15 @@
               Download PDF <span class="arrow">↓</span>
             </a>
           </div>
-
-          <div class="res-item">
-            <div class="res-kicker">Copy &amp; paste</div>
-            <div class="res-title">Your Starter Prompt</div>
-            <p class="res-desc">Drop this into a fresh Claude chat to start designing your own workspace.</p>
-            <button class="btn btn-coral btn-block" data-copy-prompt>
-              Copy starter prompt <span class="arrow">⧉</span>
-            </button>
-          </div>
         </aside>
       </div>
     </div>
   </header>
 
-  <!-- Starter prompt (readable + copyable) -->
-  <section class="prompt-sec">
-    <div class="container">
-      <span class="eyebrow section-label">Step 1 · Build your foundation</span>
-      <h2 class="display">Your <em>starter prompt</em></h2>
-      <p class="intro">Open a new Claude chat, paste this in, and answer its questions. It walks you through the four-layer architecture from the workshop.</p>
-
-      <div class="prompt-card">
-        <div class="prompt-head">
-          <span class="label">Living Workspace · Starter Prompt</span>
-          <button class="copy-btn" data-copy-prompt>Copy prompt</button>
-        </div>
-        <div class="prompt-body" id="prompt-text">I want to build a Living Workspace for my business.
-
-The purpose of this workspace is to give my AI assistant a clear, organized, always-current understanding of my business so it can help me think, plan, execute, write, make decisions, and track what is changing over time.
-
-I want to use a simple four-layer architecture:
-
-1. CLAUDE.md
-This is the routing file. It should stay lean. It should include who I am, what my business does, key terms I use, my current offers or projects, my preferences, and pointers to deeper documents. It should not become a giant strategy document.
-
-2. TASKS.md
-This is the execution layer. It should show my current locked goals for the week, what I am actively working on, what is in the backlog, and what needs a decision. This is the first place you should look when I ask, "What am I working on?"
-
-3. KNOWLEDGE/wiki/
-This is the rationale layer. This is where the deeper thinking lives. Any important strategy, offer decision, customer insight, positioning idea, funnel strategy, or business reasoning should be stored here as individual wiki-style notes.
-
-4. LOG.md
-This is the chronology. It should contain dated entries of meaningful changes: what shifted, what got renamed, what got retired, what got replaced, and why.
-
-Help me design this for myself. I will provide some key information and you can question me to fill in the gaps.</div>
-      </div>
-    </div>
-  </section>
-
   <!-- Two paths -->
   <section class="paths">
     <div class="container">
-      <span class="eyebrow section-label">Step 2 · Keep building with me</span>
+      <span class="eyebrow section-label">Keep building with me</span>
       <h2 class="display">Two ways to take this <em>further.</em></h2>
       <p class="lead">You've got the blueprint. If you want help turning it into a system you actually run your business from, here's where people go next.</p>
 
@@ -612,8 +618,15 @@ Help me design this for myself. I will provide some key information and you can 
           </ul>
 
           <div class="path-foot">
-            <div class="bonus-banner">
-              <strong>Apply by June 2nd:</strong> also get 11 of my personal Claude Skills + my Custom Social Media Workflow.
+            <div class="bonus-banner" id="bonus-banner">
+              <div class="bonus-head">★ Fast-action bonus</div>
+              <p class="bonus-text"><strong>Apply by June 16th</strong> and get a full <strong>Premium Annual Membership to Futureproof</strong> included — a <span class="bonus-value">$564 value</span>.</p>
+              <div class="bonus-countdown" id="bonus-countdown" aria-live="polite" aria-label="Time remaining to claim the bonus">
+                <span class="cd-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-lbl">days</span></span>
+                <span class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-lbl">hrs</span></span>
+                <span class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-lbl">min</span></span>
+                <span class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl">sec</span></span>
+              </div>
             </div>
             <div class="price-line">
               <span class="amt">$1,997</span>
@@ -657,7 +670,7 @@ Help me design this for myself. I will provide some key information and you can 
   <section class="closing">
     <div class="container-narrow">
       <h2 class="display">The workshop was the <em>idea.</em> Now go build the thing.</h2>
-      <p class="sub">Start with the prompt. Keep the blueprint close. And when you're ready for help, you know where I am.</p>
+      <p class="sub">Keep the blueprint close. And when you're ready for help, you know where I am.</p>
     </div>
   </section>
 
@@ -696,41 +709,37 @@ Help me design this for myself. I will provide some key information and you can 
       }
     })();
 
-    // Copy starter prompt to clipboard
+    // Bonus countdown — expires 11:59pm Pacific (PDT, UTC-7) on June 16, 2026
     (function () {
-      var promptEl = document.getElementById('prompt-text');
-      var buttons = document.querySelectorAll('[data-copy-prompt]');
-      buttons.forEach(function (btn) {
-        var original = btn.innerHTML;
-        btn.addEventListener('click', function () {
-          var text = promptEl ? promptEl.textContent : '';
-          var done = function () {
-            btn.classList.add('copied');
-            btn.innerHTML = 'Copied ✓';
-            setTimeout(function () {
-              btn.classList.remove('copied');
-              btn.innerHTML = original;
-            }, 2000);
-          };
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(done).catch(function () {
-              fallbackCopy(text); done();
-            });
-          } else {
-            fallbackCopy(text); done();
+      var DEADLINE = Date.UTC(2026, 5, 17, 6, 59, 0); // 2026-06-17 06:59 UTC = Jun 16 11:59pm PDT
+      var banner = document.getElementById('bonus-banner');
+      var cd = document.getElementById('bonus-countdown');
+      if (!cd) return;
+      var elD = document.getElementById('cd-days'),
+          elH = document.getElementById('cd-hours'),
+          elM = document.getElementById('cd-mins'),
+          elS = document.getElementById('cd-secs');
+      var timer;
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      function tick() {
+        var diff = DEADLINE - Date.now();
+        if (diff <= 0) {
+          if (timer) clearInterval(timer);
+          if (banner) {
+            banner.classList.add('expired');
+            banner.innerHTML =
+              '<div class="bonus-head">Bonus closed</div>' +
+              '<p class="bonus-text">The fast-action annual membership bonus has ended — but the Intensive is still open.</p>';
           }
-        });
-      });
-      function fallbackCopy(text) {
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch (e) {}
-        document.body.removeChild(ta);
+          return;
+        }
+        elD.textContent = pad(Math.floor(diff / 86400000));
+        elH.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+        elM.textContent = pad(Math.floor((diff % 3600000) / 60000));
+        elS.textContent = pad(Math.floor((diff % 60000) / 1000));
       }
+      tick();
+      timer = setInterval(tick, 1000);
     })();
   </script>
 </body>
