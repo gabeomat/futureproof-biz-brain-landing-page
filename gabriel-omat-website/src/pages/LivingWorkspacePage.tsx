@@ -2,25 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import "@/styles/living-workspace.css";
 
-const TARGET_MS = new Date("2026-06-02T23:59:59").getTime();
+// June 16, 2026 · 11:59:59pm Pacific (PDT, UTC−7)
+const TARGET_MS = new Date("2026-06-16T23:59:59-07:00").getTime();
 const APPLY_URL = "https://living-workspace-application.lovable.app";
-const WAITLIST_MODE = true;
+const WAITLIST_MODE = false;
 const NEXT_ROUND_PRICE = "$1,997";
 const TYPICAL_WAIT = "2–4 weeks";
-
-const SKILLS: Array<{ name: string }> = [
-  { name: "File Organizer" },
-  { name: "Client Onboarding Sequence Builder" },
-  { name: "Brainstorming Skill" },
-  { name: "SOP Creator" },
-  { name: "Consciousness-Based Sales Page Creator" },
-  { name: "Frontend Design Skill" },
-  { name: "AI Product Thinking Coach" },
-  { name: "Podcast Script Creator" },
-  { name: "The Content Multiplier" },
-  { name: "The Newsletter Builder" },
-  { name: "News Carousel Builder" },
-];
 
 const ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii"];
 
@@ -152,7 +139,7 @@ export default function LivingWorkspacePage() {
       {!WAITLIST_MODE && (
         <div className="countdown">
           <div className="timer">
-            <span>Skills bonus closes in</span>
+            <span>Membership bonus closes in</span>
             <b>{pad(d)}</b><span>D</span>
             <b>{pad(h)}</b><span>H</span>
             <b>{pad(m)}</b><span>M</span>
@@ -382,23 +369,25 @@ export default function LivingWorkspacePage() {
       {/* Bonus */}
       {!WAITLIST_MODE && (
       <div className="bonus">
-        <div className="bonus-card">
-          <div className="bonus-left">
-            <div className="eyebrow"><span className="line" /><span>Bonus · Closes Tuesday, June 2</span></div>
-            <h3>11 Custom</h3>
-            <h3>Claude Skills.</h3>
-            <div className="it">— $500 value.</div>
-            <p>The same skills I use in my own business every single week. The ones I'd hand a private client. The ones that took months to build, refine, and prove.</p>
-            <p>Sign up by Tuesday, June 2 and you get all 11 the day you join. They drop straight into your workspace and they're yours to keep.</p>
-            <div className="deadline">After Tuesday, June 2 · this disappears</div>
+        <div className="bonus-card bonus-card--solo">
+          <div className="bonus-banner">
+            <span className="bonus-banner-tag">★ Fast-Action Bonus</span>
+            <span className="bonus-banner-expiry">Expires Tuesday, June 16</span>
           </div>
-          <div className="skills">
-            {SKILLS.map((sk, i) => (
-              <div className="skill" key={sk.name}>
-                <span className="n">{ROMAN[i]}</span>
-                <span className="t">{sk.name}</span>
-              </div>
-            ))}
+          <div className="bonus-left">
+            <div className="bonus-kicker">Free when you join by June 16</div>
+            <h3>A Full Year of My</h3>
+            <h3>Ongoing Support.</h3>
+            <div className="it">— $564 value, yours free.</div>
+            <p>Join by <strong>Tuesday, June 16</strong> and I'll hand you a full annual membership to <strong>Futureproof — The Evolution Lab</strong>. This isn't extra 1:1 calls — it's <strong>me in your corner for a full year</strong> inside the community, helping you keep evolving long after the 30-day build is done.</p>
+            <ul className="bonus-includes">
+              <li>My ongoing support &amp; answers for a full year</li>
+              <li>Weekly live Q&amp;A with me</li>
+              <li>An active community building right alongside you</li>
+              <li>Custom Claude Skills, apps, and workflows you can make your own</li>
+              <li>The entire Futureproof training library</li>
+            </ul>
+            <div className="deadline">⏳ Gone after Tuesday, June 16</div>
           </div>
         </div>
       </div>
@@ -486,7 +475,7 @@ export default function LivingWorkspacePage() {
                   <span>·</span>
                   <span>$1,997 (future $3,000)</span>
                   <span>·</span>
-                  <span>Skills bonus closes Tuesday, June 2</span>
+                  <span>Membership bonus closes Tuesday, June 16</span>
                 </>
               )}
             </div>
